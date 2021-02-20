@@ -1,0 +1,339 @@
+.wrapper {
+    background-color: #23242B;
+}
+
+.logo {
+    width: auto;
+    height: 70%;
+}
+
+.small-text {
+    margin-bottom: -2px;
+    margin-top: -2px;
+    font-size: x-small;
+}
+
+.normal-text {
+    margin-bottom: -2px;
+    margin-top: -2px;
+}
+
+#att canvas {
+    border-radius: 50%;
+}
+
+.pageChanger {
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 0.45vw;
+    width: 6vw;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #15161B;
+}
+
+.menu-big {
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8rem;
+}
+
+.slick-slide:focus {
+    outline: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.carousel-item {
+    transition: -webkit-transform .3s ease;
+    transition: transform .3s ease;
+    transition: transform .3s ease,-webkit-transform .3s ease;
+}
+
+.long-line {
+    border: solid;
+    border-width: 0.5px;
+    margin: 5px 0;
+}
+
+ul.info-texts {
+    max-width: 60em;
+    font-size: small;
+    margin-top: 10px;
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none;
+}
+
+ul.info-texts li{
+    padding: 3px 0;
+}
+
+ul.info-texts li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content: "......................................" "......................................" "......................................" "......................................""......................................""......................................""......................................";
+}
+
+ul.info-texts span:first-child {
+    padding-right: 0.33em;
+    background: #23242B;
+}
+
+ul.info-texts span + span {
+    float: right;
+    padding-left: 0.33em;
+    background: #23242B;
+}
+
+.inner-card {
+    margin-top: 15px;
+    width: 36.5vw;
+    margin-left: 1.5vw;
+    background-color: #23242B;
+    padding: 25px 25px 12.5px 25px;
+}
+
+.custom-card {
+    margin-top: 15px;
+    width: 31.2vw;
+    height: 36vh;
+    background-color: #23242B;
+    padding: 25px 25px 12.5px 25px;
+    color: white;
+}
+
+.custom-carousel-inner {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+.center-bottom-navbar-column {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.stage-btn {
+    color: white;
+    background-color: #23242B;
+    border: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 0.8rem 4rem;
+    font-size: 0.75rem;
+}
+
+.custom-btn {
+    color: white;
+    background-color: #23242B;
+    border: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    margin-top: 5px;
+    padding: 0.8rem 0;
+    font-size: 0.75rem;
+    width: 100%;
+}
+
+.custom-small {
+    margin-bottom: -2px;
+    margin-top: -2px;
+    font-size: small;
+}
+
+.right-border {
+    padding: 5px 10px;
+    border-right: 1px solid #ffffff;
+}
+
+.left-border {
+    padding: 5px 10px;
+    border-left: 1px solid #ffffff;
+}
+
+.charts {
+    position: relative;
+    height: 27vh;
+    width: 100%;
+}
+
+.selectionIndicator {
+    position: absolute;
+    left: 0.55vw;
+    bottom: 0;
+    width: calc(1.5vw + 4vh);
+    height: 0.19vw;
+    background-color: white;
+}
+
+.highlight {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc((1.5vw + 4vh) * 1.75);
+    height: auto;
+}
+
+.orient {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: #23242B;
+    z-index: 2000;
+}
+
+.orient-text {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    transform: translateY(50%);
+    color: #ffffff;
+    z-index: 2001;
+}
+
+.intro {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: #23242B;
+    z-index: 2002;
+    overflow-y: hidden; /* Disable horizontal scroll */
+    transition: transform 700ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.intro-img {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    z-index: 2003;
+}
+
+.intro.done {
+    transform: translateY(-100%);
+}
+
+.main-frame {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#main-frame-image {
+    height: 76vh;
+    margin-top: 3vh;
+    width: auto;
+    border: 1px solid #ffffff;
+    border-radius: 2rem;
+}
+
+.roll {
+    position: absolute;
+    color: #1FE327;
+    top: 19vh;
+    left: 7vw;
+    z-index: 2000;
+}
+
+.pitch {
+    position: absolute;
+    color: #1FE327;
+    top: 39.5vh;
+    left: 7vw;
+    z-index: 2000;
+}
+
+.yaw {
+    position: absolute;
+    color: #1FE327;
+    bottom: 16vh;
+    left: 7vw;
+    z-index: 2000;
+}
+
+.deltav {
+    position: absolute;
+    color: #1FE327;
+    top: 39.5vh;
+    left: 7vw;
+    z-index: 2000;
+}
+
+.acceleration {
+    position: absolute;
+    background-color: #15161B;
+    height: 20vh;
+    width: 20vh;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    top: 5vh;
+    left: 7vw;
+    z-index: 2000;
+}
+
+.altitude {
+    position: absolute;
+    background-color: #15161B;
+    height: 20vh;
+    width: 20vh;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    top: 5vh;
+    right: 7vw;
+    z-index: 2000;
+}
+
+.attitude {
+    position: absolute;
+    background-color: #15161B;
+    height: 20vh;
+    width: 20vh;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    bottom: 2vh;
+    left: 7vw;
+    z-index: 2000;
+}
+
+.speed {
+    position: absolute;
+    background-color: #15161B;
+    height: 20vh;
+    width: 20vh;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    bottom: 2vh;
+    right: 7vw;
+    z-index: 2000;
+}
+
+.text-container text {
+    fill: #ffffff;
+    font-family: inherit;
+}

@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Kerbal Telemetry</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="/static/sources/style.css" />
+    <link rel="icon" href="/static/logo.png" />
+    <script type="text/javascript" src="/static/sources/gauge.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw==" crossorigin="anonymous"></script>
+
+    <script src="/static/include/vec2.js"></script>
+    <script src="/static/include/quadtree2.js"></script>
+    <script src="/static/include/three.min.js"></script>
+    <script src="/static/include/tween.min.js"></script>
+    <script src="/static/include/pusher.color.js"></script>
+    <script src="/static/data.json"></script>
+    <script src="/static/build/encom-globe.js"></script>
+    <script src="/static/sources/globe.js"></script>
+</head>
+<body>
+    <div class="orient">
+        <div class="orient-text">Please rotate your device horizontally.</div>
+    </div>
+    <div class="intro"></div>
+    <div class="wrapper noselect">
+        <nav class="navbar navbar-expand-lg navbar-dark border" style="background-color: #15161B; height: 10vh;">
+            <img class="logo" src="/static/sources/logo.png" />
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" style="margin-left: 25px;">
+                        <p class="text-white small-text">SPACECRAFT</p>
+                        <p class="text-white normal-text"><strong><span id="nameVar">None</span></strong></p>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10vw;">
+                        <p class="text-white small-text">MISSION TIME</p>
+                        <p class="text-white normal-text"><strong><span id="timeVar">T+00:00:00</span></strong></p>
+                    </li>
+                </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item" style="margin-left: 30px;">
+                            <p class="text-white small-text">INERTIAL VELOCITY</p>
+                            <p class="text-white normal-text"><strong><span id="speedVar">0.00km/s</span></strong></p>
+                        </li>
+                        <li class="nav-item" style="margin-left: 30px;">
+                            <p class="text-white small-text">ALTITUDE</p>
+                            <p class="text-white normal-text"><strong><span id="altVar">0.0km</span></strong></p>
+                        </li>
+                        <li class="nav-item" style="margin-left: 30px;">
+                            <p class="text-white small-text">APOGEE</p>
+                            <p class="text-white normal-text"><strong><span id="apVar">0.0km</span></strong></p>
+                        </li>
+                        <li class="nav-item" style="margin-left: 30px;">
+                            <p class="text-white small-text">PERIGEE</p>
+                            <p class="text-white normal-text"><strong><span id="peVar">0.0km</span></strong></p>
+                        </li>
+                        <li class="nav-item" style="margin-left: 30px;">
+                            <p class="text-white small-text">INCLINATION</p>
+                            <p class="text-white normal-text"><strong><span id="inclVar">0.00°</span></strong></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="carouselExampleIndicators" class="carousel slide" data-interval="0" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container-fluid" style="height: 82vh; z-index: 1000;">
+                        <div class="row">
+                            <div class="border-left border-bottom border-right" style="background-color: #15161B; height: 81.9vh; width: 7vw; border-radius: 0 0 0 30px;">
+                                <div class="pageChanger" id="pageChanger1" style="border-color: #ffffff;">
+                                    <img src="/static/sources/assets/whiteDot.png" style="width: 15px; height: auto;" />
+                                    <p class="text-white menu-big" style="">External</p>
+                                    <p class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Values</p>
+                                    <div class="subset" style="opacity: 1; height: 3px; width: 5vw; background-color: #20FBFD; margin-left: 0.5vw; margin-top: 7px; margin-bottom: 5px;"></div>
+                                </div>
+                                <div class="pageChanger" id="pageChanger2">
+                                    <img src="/static/sources/assets/whiteDot.png" style="width: 15px; height: auto;" />
+                                    <p class="text-white menu-big">Orbit</p>
+                                    <p class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Information</p>
+                                    <div class="subset" style="opacity: 0; height: 3px; width: 5vw; background-color: #20FBFD; margin-left: 0.5vw; margin-top: 7px; margin-bottom: 5px;"></div>
+                                </div>
+                                <div class="pageChanger" id="pageChanger3">
+                                    <img src="/static/sources/assets/whiteDot.png" style="width: 15px; height: auto;" />
+                                    <p class="text-white menu-big">Spacecraft</p>
+                                    <p class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Information</p>
+                                    <div class="subset" style="opacity: 0; height: 3px; width: 5vw; background-color: #20FBFD; margin-left: 0.5vw; margin-top: 7px; margin-bottom: 5px;"></div>
+                                </div>
+                                <div class="pageChanger" id="pageChanger4">
+                                    <img src="/static/sources/assets/whiteDot.png" style="width: 15px; height: auto;" />
+                                    <p class="text-white menu-big">Temperature</p>
+                                    <p class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Values</p>
+                                    <div class="subset" style="opacity: 0; height: 3px; width: 5vw; background-color: #20FBFD; margin-left: 0.5vw; margin-top: 7px; margin-bottom: 5px;"></div>
+                                </div>
+                            </div>
+                            <div class="border-right border-bottom" style="background-color: #15161B; height: 81.9vh; width: 38vw;">
+                                <div style="height: 82vh; width: 100%;">
+                                    <div style="display: inline; height: 10vh; width: 100%;">
+                                        <div class="fas fa-arrow-left border align-middle" style="cursor: pointer; background-color: #23242B; margin: 12px; padding: 12px; width: 40px; height: 38px; color: #ffffff; border-radius: 3px; border: solid"></div>
+                                        <div class="fas fa-arrow-right border align-middle" style="cursor: pointer; background-color: #23242B; margin: 12px 0px; margin-left: -12px; padding: 12px; width: 40px; height: 38px; color: #ffffff; border-radius: 3px; border: solid"></div>
+                                        <span class="text-white align-middle" style="margin-left: 20px; font-size: larger; vertical-align: middle;"><strong id="selectedTitle">External Values</strong></span>
+                                    </div>
+                                    <div class="custom-carousel">
+                                        <div class="custom-carousel-inner text-white" style="height: 71.9vh; width: 100%;">
+                                            <div class="inner-card">
+                                                <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Location Information</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Altitude</span><span id="altVar2">0.0km</span></li>
+                                                    <li><span>Latitude</span><span id="latVar">0° 0.00' N</span></li>
+                                                    <li><span>Longitude</span><span id="longVar">0° 0.00' E</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="inner-card" style="margin-bottom: 25px;">
+                                                <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Atmosphere</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Temperature</span><span id="tempVar">0°C</span></li>
+                                                    <li><span>Atmospheric Density</span><span id="atmDenVar">0kg/m<sup>3</sup></span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="custom-carousel-inner text-white" style="height: 71.9vh; width: 100%;">
+                                            <div class="inner-card">
+                                                <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Orbit Heights</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Apoapsis Height</span><span id="apHeightVar">0.0km</span></li>
+                                                    <li><span>Periapsis Height</span><span id="peHeightVar">0.0km</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="inner-card">
+                                                <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Orbit Values</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Inclination</span><span id="inclVar2">0°</span></li>
+                                                    <li><span>Eccentricity</span><span id="eccVar">0</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="inner-card" style="margin-bottom: 25px;">
+                                                <img src="/static/sources/assets/greenDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Time Values</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Time to Apoapsis</span><span id="timeToAp">00:00:00</span></li>
+                                                    <li><span>Time to Periapsis</span><span id="timeToPe">00:00:00</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="custom-carousel-inner text-white" style="height: 71.9vh; width: 100%;">
+                                            <div class="inner-card">
+                                                <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>General</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Name</span><span id="nameVar2">None</span></li>
+                                                    <li><span>Mass</span><span id="massVar">0.0kg</span></li>
+                                                    <li><span>Part Count</span><span id="partCountVar">0</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="inner-card" style="margin-bottom: 25px;">
+                                                <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Orbit Values</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Total DeltaV</span><span id="deltaVVar">0m/s</span></li>
+                                                    <li><span>Acceleration</span><span id="accVar">0m/s<sup>2</sup></span></li>
+                                                    <li><span>G-Force</span><span id="gForceVar">0.00g</span></li>
+                                                    <li><span>Situation</span><span id="situationVar">Landed</span></li>
+                                                    <li><span>Distance Travelled</span><span id="distTravVar">0.0km</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="custom-carousel-inner text-white" style="height: 71.9vh; width: 100%;">
+                                            <div class="inner-card">
+                                                <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Current</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Outside Temperature</span><span id="tempVar2">0°</span></li>
+                                                    <li><span>Convection Flux</span><span id="convFlux">0</span></li>
+                                                    <li><span>Internal Flux</span><span id="intFlux">0</span></li>
+                                                    <li><span>Radiation Flux</span><span id="radFlux">0</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="inner-card">
+                                                <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Coolest</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Coolest Temperature</span><span id="coolTemp">0°</span></li>
+                                                    <li><span>Coolest Skin Temperature</span><span id="coolSkinTemp">0°</span></li>
+                                                    <li><span>Coolest Skin Part Name</span><span id="coolSkinName">None</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="inner-card">
+                                                <img src="/static/sources/assets/greenDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Hottest</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Hottest Temperature</span><span id="hotTemp">0°</span></li>
+                                                    <li><span>Hottest Skin Temperature</span><span id="hotSkinTemp">0°</span></li>
+                                                    <li><span>Hottest Skin Part Name</span><span id="hotSkinName">None</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="inner-card" style="margin-bottom: 25px;">
+                                                <img src="/static/sources/assets/crimsonDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Critical</strong></span>
+                                                <div class="long-line"></div>
+                                                <ul class="info-texts">
+                                                    <li><span>Critical Temperature</span><span id="critTemp">0°</span></li>
+                                                    <li><span>Critical Skin Temperature</span><span id="critSkinTemp">0°</span></li>
+                                                    <li><span>Critical Skin Part Name</span><span id="critSkinName">None</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-right border-bottom" style="background-color: #15161B; height: 81.9vh; width: 55vw; border-radius: 0 0 30px 0;">
+                                <div id="globeContainer" style="height: 74.9vh; width: 55vw;">
+                                    <div id="globe"></div>
+                                </div>
+                                <div class="globe-footer" style="height: 7vh; width: 55vw;">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item" style="text-align: center;">
+                                            <p class="text-white small-text">CAMERA</p>
+                                            <p class="text-white small-text"><strong>Auto - Earth IO</strong></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container-fluid" style="height: 82vh; z-index: 1000;">
+                        <div class="row">
+                            <div class="border-left border-bottom border-right" style="background-color: #15161B; height: 81.9vh; width: 100vw; border-radius: 0 0 30px 30px; padding: 0 15px;">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="custom-card">
+                                            <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                            <span class="text-white" style="display: inline; vertical-align: middle;">FLIGHT PROFILE</span>
+                                            <div class="long-line"></div>
+                                            <div class="charts">
+                                                <canvas id="flightProfile"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="custom-card custom-carousel-inner">
+                                            <img src="/static/sources/assets/pinkDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                            <span class="text-white" style="display: inline; vertical-align: middle;">CURRENT VALUES</span>
+                                            <div class="long-line"></div>
+                                            <ul class="info-texts">
+                                                <li><span>Vertical Speed</span><span id="vertSpeed">0km/s</span></li>
+                                                <li><span>Horizontal Speed</span><span id="horizSpeed">0km/s</span></li>
+                                                <li><span>Mach</span><span id="mach">0.0M</span></li>
+                                                <li><span>Latitude</span><span id="latVar2">0° 0.00 N</span></li>
+                                                <li><span>Longitude</span><span id="longVar2">0° 0.00 E</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="custom-card">
+                                            <img src="/static/sources/assets/purpleDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                            <span class="text-white" style="display: inline; vertical-align: middle;">DELTA-V OVER TIME(ΔV/S)</span>
+                                            <div class="long-line"></div>
+                                            <div class="charts">
+                                                <canvas id="dvTime"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="custom-card">
+                                            <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                            <span class="text-white" style="display: inline; vertical-align: middle;">ALTITUDE OVER TIME (M/S)</span>
+                                            <div class="long-line"></div>
+                                            <div class="charts">
+                                                <canvas id="altTime"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="custom-card">
+                                            <img src="/static/sources/assets/greenDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                            <span class="text-white" style="display: inline; vertical-align: middle;">APOGEE OVER TIME (M/S)</span>
+                                            <div class="long-line"></div>
+                                            <div class="charts">
+                                                <canvas id="apTime"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="custom-card">
+                                            <img src="/static/sources/assets/crimsonDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
+                                            <span class="text-white" style="display: inline; vertical-align: middle;">VELOCITY OVER TIME (M/S²)</span>
+                                            <div class="long-line"></div>
+                                            <div class="charts">
+                                                <canvas id="velTime"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container-fluid" style="height: 82vh; z-index: 1000;">
+                        <div class="row">
+                            <div class="border-left border-bottom border-right" style="background-color: #15161B; height: 81.9vh; width: 100vw; border-radius: 0 0 30px 30px;">
+                                <div class="row">
+                                    <div class="col-2" style="padding-left: 2vw; padding-top: 1vh;">
+                                        <span class="text-white" style="display: inline; vertical-align: middle;">TARGETS</span>
+                                        <div class="long-line text-white"></div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="main-frame">
+                                            <div class="roll" id="rollVar">0.0°</div>
+                                            <div class="pitch" id="pitchVar">0.0°</div>
+                                            <div class="yaw" id="yawVar">0.0°</div>
+                                            <div class="deltav" id="deltaVVar2">0m/s</div>
+                                            <div class="acceleration">
+                                                <div id="acc" class="gauges"></div>
+                                            </div>
+                                            <div class="altitude">
+                                                <div id="alt" class="gauges"></div>
+                                            </div>
+                                            <div class="attitude">
+                                                <div id="att" class="gauges"></div>
+                                            </div>
+                                            <div class="speed">
+                                                <div id="spd" class="gauges"></div>
+                                            </div>
+                                            <img id="main-frame-image" src="/static/sources/assets/mainframe.png" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2" style="padding-right: 2vw; padding-top: 1vh;">
+                                        <span class="text-white" style="display: inline; vertical-align: middle;">FLIGHT COMMANDS</span>
+                                        <div class="long-line text-white"></div>
+                                        <button class="custom-btn btn" disabled><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Start Ascend</button>
+                                        <button class="custom-btn btn" disabled><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Rendezvous With Target</button>
+                                        <button class="custom-btn btn" disabled><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Dock With Target</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #23242B; height: 8vh;">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="selectionIndicator"></div>
+                <img class="highlight" src="/static/sources/assets/highlight.png" />
+                <ul class="navbar-nav mr-auto">
+                    <li id="firstSelector" data-target="#carouselExampleIndicators" data-slide-to="0" class="nav-item" style="padding-left: 0.2vw; padding-right: 1vw; cursor: pointer;">
+                        <img src="/static/sources/assets/globeIcon.png" style="height: 4vh; width: auto;" />
+                    </li>
+                    <li id="secondSelector" data-target="#carouselExampleIndicators" data-slide-to="1" class="nav-item" style="padding-left: 1vw; padding-right: 1vw; cursor: pointer;">
+                        <img src="/static/sources/assets/chart.png" style="height: 2.5vh; width: auto;" />
+                    </li>
+                    <li id="thirdSelector" data-target="#carouselExampleIndicators" data-slide-to="2" class="nav-item" style="padding-left: 1vw; padding-right: 1vw; cursor: pointer;">
+                        <img src="/static/sources/assets/spacecraft.png" style="height: 4vh; width: auto;" />
+                    </li>
+                </ul>
+                <div class="center-bottom-navbar-column form-inline">
+                    <ul class="navbar-nav mr-auto" style="display: flex; align-items: center;">
+                        <li class="nav-item right-border" style="margin-right: 30px;">
+                            <p class="text-white small-text">CURRENT STAGE</p>
+                            <p class="text-white custom-small text-right">Stage <span id="currentStage">0</span></p>
+                        </li>
+                    </ul>
+                    <button id="stageButton" class="stage-btn btn" disabled>STAGE NOW</button>
+                    <ul class="navbar-nav mr-auto" style="display: flex; align-items: center;">
+                        <li class="nav-item left-border" style="margin-left: 30px;">
+                            <p class="text-white small-text">PLANET</p>
+                            <p class="text-white custom-small" id="planet">Kerbin</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto" style="display: flex; align-items: center;">
+                        <li class="nav-item" style="margin-left: 30px;">
+                            <img src="/static/sources/assets/target.png" style="height: 4vh; width: auto;" />
+                        </li>
+                        <li class="nav-item align-items-center" style="margin-left: 10px;">
+                            <p style="margin: 0; font-size: 0.8rem; color: #20FBFD;">SPX</p>
+                        </li>
+                        <li class="nav-item" style="margin-left: 15px;">
+                            <img style="display: block;" src="/static/sources/assets/camera-blue.png" />
+                            <img style="display: block; margin-left: 1px; margin-top: 5px;" src="/static/sources/assets/arrow-blue.png" />
+                        </li>
+                        <li class="nav-item" style="margin-left: 15px; text-align: center;">
+                            <p class="small-text" style="color: #20FBFD;" id="realTime">00:00</p>
+                            <div style="width:auto; border-top: solid; border-color: #20FBFD; border-width: 1px;"></div>
+                            <p class="small-text" style="color: #20FBFD;">REAL</p>
+                        </li>
+                        <li class="nav-item" style="margin-left: 15px; text-align: center;">
+                            <p class="small-text" style="color: #20FBFD;" id="isComm">FALSE</p>
+                            <div style="width:auto; border-top: solid; border-color: #20FBFD; border-width: 1px;"></div>
+                            <p class="small-text" style="color: #20FBFD;">COMM</p>
+                        </li>
+                        <li class="nav-item" style="margin-left: 45px;">
+                            <img src="/static/sources/assets/target.png" style="height: 4vh; width: auto;" />
+                        </li>
+                        <li class="nav-item align-items-center" style="margin-left: 10px;">
+                            <p style="margin: 0; font-size: 0.8rem; color: #808080;" id="targetName">NON</p>
+                        </li>
+                        <li class="nav-item" style="margin-left: 15px;">
+                            <img style="display: block;" src="/static/sources/assets/camera-white.png" />
+                            <img style="display: block; margin-left: 1px; margin-top: 5px;" src="/static/sources/assets/arrow-white.png" />
+                        </li>
+                        <li class="nav-item align-items-center" style="margin-left: 15px;">
+                            <p style="margin: 0; font-size: 0.8rem; color: #ffffff;" id="targetValues">0.0/0</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <script type="text/javascript" src="/static/sources/controller.js"></script>
+    <script src="/static/dataGetter.js"></script>
+    <style>
+        #globe {
+            z-index: 3000;
+        }
+    </style>
+</body>
+</html>
