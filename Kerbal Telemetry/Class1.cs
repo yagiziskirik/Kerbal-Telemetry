@@ -37,10 +37,14 @@ namespace Kerbal_Telemetry
             string targetName = "";
             double targetSpeed = 0;
             double distance = 0;
+            double targetLat = 0;
+            double targetLong = 0;
+
             try
             {
                 ITargetable target = FlightGlobals.fetch.VesselTarget;
                 targetName = target.GetDisplayName();
+                var vessel = target.GetVessel();
                 var targetOrbit = FlightGlobals.fetch.VesselTarget.GetOrbit();
                 var originOrbit = (FlightGlobals.ship_orbit.referenceBody == Planetarium.fetch.Sun ||
                                     FlightGlobals.ship_orbit.referenceBody == FlightGlobals.ActiveVessel.targetObject.GetOrbit().referenceBody)
@@ -48,6 +52,9 @@ namespace Kerbal_Telemetry
                     : FlightGlobals.ship_orbit.referenceBody.orbit;
                 targetSpeed = FlightGlobals.ship_obtSpeed - targetOrbit.orbitalSpeed;
                 distance = Vector3d.Distance(targetOrbit.pos, originOrbit.pos);
+                targetLat = vessel.latitude;
+                targetLong = vessel.longitude;
+
             } catch (Exception)
             {
                 targetName = "NON";
@@ -209,8 +216,8 @@ namespace Kerbal_Telemetry
                     File.WriteAllText(@"Kerbal Telemetry\static\dVOverTimeData.json", finalDVOverTimee);
                 }
             }
-            string serializeData = "\"altitude\":{0},\"distanceTraveled\":{1},\"externalTemperature\":{2},\"GForce\":{3},\"canComm\":\"{4}\",\"situation\":\"{5}\",\"timeToPe\":{6},\"lat\":{7},\"lon\":{8},\"verticalSpeed\":{9},\"missionTime\":{10},\"speed\":{11},\"name\":\"{12}\",\"atmDensity\":{13},\"currentStage\":{14},\"deltaV\":{15},\"timeToAp\":{16},\"orbitSpeed\":{17},\"orbitIncl\":{18},\"orbitEcc\":{19},\"ApA\":{20},\"PeA\":{21},\"horizSpeed\":{22},\"partCount\":{23},\"mass\":{24},\"acceleration\":{25},\"convFlux\":{26},\"radFlux\":{27},\"intFlux\":{28},\"planetName\":\"{29}\",\"yaw\":{30},\"pitch\":{31},\"roll\":{32},\"coolTemp\":{33},\"coolSkinTemp\":{34},\"coolSkinName\":\"{35}\",\"hotTemp\":{36},\"hotSkinTemp\":{37},\"hotSkinName\":\"{38}\",\"critTemp\":{39},\"critSkinTemp\":{40},\"critSkinName\":\"{41}\",\"targetName\":\"{42}\",\"distance\":{43},\"targetSpeed\":{44}";
-            string data = String.Format(serializeData, altitude, distanceTraveled, externalTemperature-273, GForce, canCommText, situation, timeToPe, lat, lon, verticalSpeed, missionTime, speed, name, atmDensity, currentStage, deltaV, timeToAp, orbitSpeed, orbitIncl, orbitEcc, ApA, PeA, horizSpeed, partCount, mass, acceleration, ConvectionFlux, RadiationFlux, InternalFlux, planetName, yaw, pitch, roll, CoolestTemperature - 273, CoolestSkinTemperature - 273, CoolestPartName, HottestTemperature - 273, HottestSkinTemperature - 273, HottestPartName, CriticalTemperature - 273, CriticalSkinTemperature - 273, CriticalPartName, targetName, distance, targetSpeed);
+            string serializeData = "\"altitude\":{0},\"distanceTraveled\":{1},\"externalTemperature\":{2},\"GForce\":{3},\"canComm\":\"{4}\",\"situation\":\"{5}\",\"timeToPe\":{6},\"lat\":{7},\"lon\":{8},\"verticalSpeed\":{9},\"missionTime\":{10},\"speed\":{11},\"name\":\"{12}\",\"atmDensity\":{13},\"currentStage\":{14},\"deltaV\":{15},\"timeToAp\":{16},\"orbitSpeed\":{17},\"orbitIncl\":{18},\"orbitEcc\":{19},\"ApA\":{20},\"PeA\":{21},\"horizSpeed\":{22},\"partCount\":{23},\"mass\":{24},\"acceleration\":{25},\"convFlux\":{26},\"radFlux\":{27},\"intFlux\":{28},\"planetName\":\"{29}\",\"yaw\":{30},\"pitch\":{31},\"roll\":{32},\"coolTemp\":{33},\"coolSkinTemp\":{34},\"coolSkinName\":\"{35}\",\"hotTemp\":{36},\"hotSkinTemp\":{37},\"hotSkinName\":\"{38}\",\"critTemp\":{39},\"critSkinTemp\":{40},\"critSkinName\":\"{41}\",\"targetName\":\"{42}\",\"distance\":{43},\"targetSpeed\":{44},\"targetLat\":{45},\"targetLong\":{46}";
+            string data = String.Format(serializeData, altitude, distanceTraveled, externalTemperature-273, GForce, canCommText, situation, timeToPe, lat, lon, verticalSpeed, missionTime, speed, name, atmDensity, currentStage, deltaV, timeToAp, orbitSpeed, orbitIncl, orbitEcc, ApA, PeA, horizSpeed, partCount, mass, acceleration, ConvectionFlux, RadiationFlux, InternalFlux, planetName, yaw, pitch, roll, CoolestTemperature - 273, CoolestSkinTemperature - 273, CoolestPartName, HottestTemperature - 273, HottestSkinTemperature - 273, HottestPartName, CriticalTemperature - 273, CriticalSkinTemperature - 273, CriticalPartName, targetName, distance, targetSpeed, targetLat, targetLong);
             data = "{" + data + "}";
             File.WriteAllText(@"Kerbal Telemetry\static\data.json", data);
         }
