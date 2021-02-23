@@ -1,3 +1,5 @@
+var orbit = false;
+
 function secondsToHms(d) {
     d = Number(d);
     var h = Math.floor(d / 3600);
@@ -124,6 +126,24 @@ function updatefPOverTime() {
     });
 }
 
+function checkOrbit() {
+    $.ajax({
+        type: "Get",
+        url: "/orbit",
+        dataType: "json",
+        success: function (data) {
+            var a = data.orbit;
+            if (a == 1 && orbit == false) {
+                orbit = true;
+                var name = document.getElementById("nameVar").innerText;
+                globe.addMarker(0, 0, name + " EP");
+                globe.addMarker(0, 180, name + " AP", true);
+                globe.addMarker(0, 0 + 360, name + " EP", true);
+            }
+        }
+    });
+}
+
 function updateData() {
     $.ajax({
         type: "Get",
@@ -195,6 +215,11 @@ function updateData() {
             document.getElementById("apHeightVar").innerText = (data.ApA / 1000).toFixed(1) + "km";
             document.getElementById("peVar").innerText = (data.PeA / 1000).toFixed(1) + "km";
             document.getElementById("peHeightVar").innerText = (data.PeA / 1000).toFixed(1) + "km";
+            document.getElementById("targetName2").innerText = data.targetName;
+            document.getElementById("targetLat").innerText = convertDMSLat(data.targetLat);
+            document.getElementById("targetLong").innerText = convertDMSLon(data.targetLong);
+            document.getElementById("targetDistance").innerText = (data.distance).toFixed(1) + "m";
+            document.getElementById("relSpeed").innerText = (data.targetSpeed).toFixed(1) + "m/s";
             if (name == "NON") {
                 document.getElementById("targetName").innerText = name;
             }
@@ -219,7 +244,8 @@ function updateCharts() {
     updateVelOverTime();
     updatedVOverTime();
     updatefPOverTime();
-    setTimeout(updateCharts, 500);
+    checkOrbit()
+    setTimeout(updateCharts, 1000);
 }
 
 updateCharts();

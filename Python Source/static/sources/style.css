@@ -114,6 +114,14 @@ ul.info-texts span + span {
     color: white;
 }
 
+.custom-card-2 {
+    margin-top: 15px;
+    width: 125%;
+    background-color: #23242B;
+    padding: 25px 25px 12.5px 25px;
+    color: white;
+}
+
 .custom-carousel-inner {
     overflow-y: scroll;
     overflow-x: hidden;

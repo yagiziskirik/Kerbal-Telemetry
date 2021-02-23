@@ -250,7 +250,28 @@ $(document).ready(function () {
     $('#stageButton').click(function () {
         $.ajax({
             type: "Get",
-            url: "/stager",
+            url: "/stage",
+            success: function (data) { }
+        });
+    });
+    $('#ascendButton').click(function () {
+        $.ajax({
+            type: "Get",
+            url: "/ascend",
+            success: function (data) { }
+        });
+    });
+    $('#dockButton').click(function () {
+        $.ajax({
+            type: "Get",
+            url: "/dock",
+            success: function (data) { }
+        });
+    });
+    $('#rendezvousButton').click(function () {
+        $.ajax({
+            type: "Get",
+            url: "/rendezvous",
             success: function (data) { }
         });
     });

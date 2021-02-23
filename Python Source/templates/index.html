@@ -330,8 +330,17 @@
                             <div class="border-left border-bottom border-right" style="background-color: #15161B; height: 81.9vh; width: 100vw; border-radius: 0 0 30px 30px;">
                                 <div class="row">
                                     <div class="col-2" style="padding-left: 2vw; padding-top: 1vh;">
-                                        <span class="text-white" style="display: inline; vertical-align: middle;">TARGETS</span>
+                                        <span class="text-white" style="display: inline; vertical-align: middle;">TARGET DETAILS</span>
                                         <div class="long-line text-white"></div>
+                                        <div class="custom-card-2">
+                                            <ul class="info-texts">
+                                                <li><span>Name</span><span id="targetName2">0km/s</span></li>
+                                                <li><span>Distance</span><span id="targetDistance">0.0m</span></li>
+                                                <li><span>R. Speed</span><span id="relSpeed">0m/s</span></li>
+                                                <li><span>Latitude</span><span id="targetLat">0° 0.00 N</span></li>
+                                                <li><span>Longitude</span><span id="targetLong">0° 0.00 E</span></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <div class="col-8">
                                         <div class="main-frame">
@@ -357,9 +366,9 @@
                                     <div class="col-2" style="padding-right: 2vw; padding-top: 1vh;">
                                         <span class="text-white" style="display: inline; vertical-align: middle;">FLIGHT COMMANDS</span>
                                         <div class="long-line text-white"></div>
-                                        <button class="custom-btn btn" disabled><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Start Ascend</button>
-                                        <button class="custom-btn btn" disabled><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Rendezvous With Target</button>
-                                        <button class="custom-btn btn" disabled><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Dock With Target</button>
+                                        <button class="custom-btn btn" id="ascendButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Start Ascend</button>
+                                        <button class="custom-btn btn" id="rendezvousButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Rendezvous With Target</button>
+                                        <button class="custom-btn btn" id="dockButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Dock With Target</button>
                                     </div>
                                 </div>
                             </div>
@@ -390,7 +399,7 @@
                             <p class="text-white custom-small text-right">Stage <span id="currentStage">0</span></p>
                         </li>
                     </ul>
-                    <button id="stageButton" class="stage-btn btn" disabled>STAGE NOW</button>
+                    <button id="stageButton" class="stage-btn btn">STAGE NOW</button>
                     <ul class="navbar-nav mr-auto" style="display: flex; align-items: center;">
                         <li class="nav-item left-border" style="margin-left: 30px;">
                             <p class="text-white small-text">PLANET</p>

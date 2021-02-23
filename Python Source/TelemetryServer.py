@@ -3,9 +3,45 @@ import os
 import subprocess
 app = Flask(__name__)
 
+subprocess.Popen("python stager.py")
+subprocess.Popen("python kerbalkRPC.py")
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/stage")
+def stage():
+	with open("stage.txt", "w") as f:
+		f.write("0")
+	return "Stage Successful"
+
+@app.route("/ascend")
+def ascend():
+	with open("ascend.txt", "w") as f:
+		f.write("0")
+	return "Ascend Initiated"
+
+@app.route("/dock")
+def dock():
+	with open("dock.txt", "w") as f:
+		f.write("0")
+	return "Dock Initiated"
+
+@app.route("/rendezvouz")
+def rendezvouz():
+	with open("rendezvouz.txt", "w") as f:
+		f.write("0")
+	return "Rendezvouz Initiated"
+
+@app.route("/orbit")
+def orbitChecker():
+	filename = os.path.join(app.static_folder, 'orbit.json')
+
+	with open(filename) as file:
+		data = json.load(file)
+
+	return data
 
 @app.route("/altOverTime")
 def altOverTime():
@@ -58,6 +94,7 @@ def liveUpdate():
 
 	with open(filename) as file:
 		data = json.load(file)
+
 
 	return data
 
