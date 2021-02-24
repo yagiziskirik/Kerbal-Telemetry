@@ -51,29 +51,27 @@ def rendezvouzAP():
 	if warning:
 		print(warning)
 
-	def execute_nodes():
-    print("Executing maneuver nodes")
-    executor.execute_all_nodes()
-    
-    with conn.stream(getattr, executor, "enabled") as enabled:
-        enabled.rate = 1 #we don't need a high throughput rate, 1 second is more than enough
-        with enabled.condition:
-            while enabled():
-                enabled.wait()
+	with conn.stream(getattr, executor, "enabled") as enabled:
+		enabled.rate = 1 #we don't need a high throughput rate, 1 second is more than enough
+		with enabled.condition:
+			while enabled():
+				enabled.wait()
 
 	print("Correcting course")
 	fineTuneClosestApproach = planner.operation_course_correction
 	fineTuneClosestApproach.intercept_distance = 50 #50 meters seems to be optimal distance; if you use 0, you can hit the target
 	fineTuneClosestApproach.make_nodes()
 	executor.tolerance = 0.01 #do a high-precision maneuver (0.01 dV tolerance)
-	execute_nodes()
+	print("Executing maneuver nodes")
+	executor.execute_all_nodes()
 
 	print("Matching speed with the target")
 	matchSpeed = planner.operation_kill_rel_vel
 	matchSpeed.time_selector.time_reference = mj.TimeReference.closest_approach #match speed at the closest approach
 	matchSpeed.make_nodes()
 	executor.tolerance = 0.1 #return the precision back to normal
-	execute_nodes()
+	print("Executing maneuver nodes")
+	executor.execute_all_nodes()
 
 	print("Rendezvous complete!")
 
