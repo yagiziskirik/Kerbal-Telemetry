@@ -41,6 +41,8 @@ $ pip install krpc
 * Click on *Show advanced settings* and check *Auto-start server* and *Auto-accept new clients*.
 Done!
 
+> Note: If web interface is not updating and showing the static values while you are in flight, indicates that system is not working properly. To fix that, move the KerbalTelemetry folder inside GameData folder. Skip this step if program works well. (Thanks to [@NguyenAirlines](https://www.curseforge.com/members/nguyenairlines "@NguyenAirlines"))
+
 ## Usage
 * Run server script (from your desktop or from the main file which includes *TelemetryServer.py*).
 * Connect to your computer's local IP address (or localhost if you are using the same computer) on your browser on your device preferably from another computer or from which KSP is installed.
