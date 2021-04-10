@@ -28,7 +28,7 @@ Telemetry addon for Kerbal Space Program. Program uses a server which is running
 * Export files to KSP main folder.
 * Install [Python 3.5](https://www.python.org/downloads/) or higher (v3.8.0 recommended).
 * Install [MechJeb](https://www.curseforge.com/kerbal/ksp-mods/mechjeb).
-* Install [kRPC](https://krpc.github.io/krpc/getting-started.html). *(Note: kRPC gives some errors when you start KSP and start of a new flight, but it works just fine.)*
+* Install [kRPC](https://krpc.github.io/krpc/getting-started.html). *(Note: If you install the latest version of kRPC, it gives some errors when you start KSP and start of a new flight, but it works just fine.)*
 * Install [kRPC MechJeb](https://genhis.github.io/KRPC.MechJeb/installation.html).
 * Install Flask and kRPC dependencies:
 ```sh
