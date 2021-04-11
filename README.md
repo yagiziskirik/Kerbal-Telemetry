@@ -20,8 +20,8 @@ Telemetry addon for Kerbal Space Program. Program uses a server which is running
 * General information and many more.
 
 ## Dependencies
-* MechJeb
-* kRPC (v2.9.2.0. Thanks to [Genhis](https://github.com/Genhis))
+* MechJeb (v2.9.2.0. Thanks to [Genhis](https://github.com/Genhis))
+* kRPC
 * kRPC MechJeb
 
 ## Setup
