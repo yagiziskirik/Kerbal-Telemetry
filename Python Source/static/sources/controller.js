@@ -15,7 +15,7 @@ function checkTime() {
     setTimeout(checkTime, 1000);
 }
 
-checkTime();
+setTimeout(function () { checkTime(); }, 4000);
 
 function createMesh(geom, imageFile) {
     var texture = THREE.ImageUtils.loadTexture("/static/" + imageFile)
@@ -53,7 +53,7 @@ var render = function () {
     renderer.setSize($('.attitude').width(), $('.attitude').height());
 };
 
-render();
+setTimeout(function () { render(); }, 4000);
 
 function alignHighligh() {
     var $this = $('.selectionIndicator');
@@ -189,6 +189,19 @@ $(document).ready(function () {
             $('#pageChanger2').css('border-color', '#FFFFFF');
             $('#pageChanger2 .subset').css('opacity', 1);
             $('#selectedTitle').text('Orbit Information');
+            if (lang == "en") {
+                $('#selectedTitle').text('Orbit Information');
+            } else if (lang == "tr") {
+                $('#selectedTitle').text('Yörünge Bilgisi');
+            } else if (lang == "ru") {
+                $('#selectedTitle').text('Информация об орбите');
+            } else if (lang == "zh") {
+                $('#selectedTitle').text('轨道信息');
+            } else if (lang == "fr") {
+                $('#selectedTitle').text('Informations sur l\'orbite');
+            } else if (lang == "es") {
+                $('#selectedTitle').text('Información de órbita');
+            }
         }
         else if (selectedPage == 2) {
             $('.pageChanger').css('border-color', '#15161B');
@@ -196,6 +209,19 @@ $(document).ready(function () {
             $('#pageChanger3').css('border-color', '#FFFFFF');
             $('#pageChanger3 .subset').css('opacity', 1);
             $('#selectedTitle').text('Spacecraft Information');
+            if (lang == "en") {
+                $('#selectedTitle').text('Spacecraft Information');
+            } else if (lang == "tr") {
+                $('#selectedTitle').text('Uzay Aracı Bilgisi');
+            } else if (lang == "ru") {
+                $('#selectedTitle').text('Информация о космическом корабле');
+            } else if (lang == "zh") {
+                $('#selectedTitle').text('航天器信息');
+            } else if (lang == "fr") {
+                $('#selectedTitle').text('Informations sur l\'engin spatial');
+            } else if (lang == "es") {
+                $('#selectedTitle').text('Información de la nave espacial');
+            }
         }
         else if (selectedPage == 0) {
             $('.pageChanger').css('border-color', '#15161B');
@@ -203,6 +229,19 @@ $(document).ready(function () {
             $('#pageChanger1').css('border-color', '#FFFFFF');
             $('#pageChanger1 .subset').css('opacity', 1);
             $('#selectedTitle').text('External Values');
+            if (lang == "en") {
+                $('#selectedTitle').text('External Values');
+            } else if (lang == "tr") {
+                $('#selectedTitle').text('Dış Değerler');
+            } else if (lang == "ru") {
+                $('#selectedTitle').text('Внешние значения');
+            } else if (lang == "zh") {
+                $('#selectedTitle').text('外部价值');
+            } else if (lang == "fr") {
+                $('#selectedTitle').text('Valeurs externes');
+            } else if (lang == "es") {
+                $('#selectedTitle').text('Valores externos');
+            }
         }
         else {
             selectedPage = 3;
@@ -211,6 +250,19 @@ $(document).ready(function () {
             $('#pageChanger4').css('border-color', '#FFFFFF');
             $('#pageChanger4 .subset').css('opacity', 1);
             $('#selectedTitle').text('Temperature Values');
+            if (lang == "en") {
+                $('#selectedTitle').text('Temperature Values');
+            } else if (lang == "tr") {
+                $('#selectedTitle').text('Sıcaklık Değerleri');
+            } else if (lang == "ru") {
+                $('#selectedTitle').text('Значения температуры');
+            } else if (lang == "zh") {
+                $('#selectedTitle').text('温度值');
+            } else if (lang == "fr") {
+                $('#selectedTitle').text('Valeurs de température');
+            } else if (lang == "es") {
+                $('#selectedTitle').text('Valores de temperatura');
+            }
         }
     });
     $('.fa-arrow-right').click(function () {
@@ -222,6 +274,19 @@ $(document).ready(function () {
             $('#pageChanger2').css('border-color', '#FFFFFF');
             $('#pageChanger2 .subset').css('opacity', 1);
             $('#selectedTitle').text('Orbit Information');
+            if (lang == "en") {
+                $('#selectedTitle').text('Orbit Information');
+            } else if (lang == "tr") {
+                $('#selectedTitle').text('Yörünge Bilgisi');
+            } else if (lang == "ru") {
+                $('#selectedTitle').text('Информация об орбите');
+            } else if (lang == "zh") {
+                $('#selectedTitle').text('轨道信息');
+            } else if (lang == "fr") {
+                $('#selectedTitle').text('Informations sur l\'orbite');
+            } else if (lang == "es") {
+                $('#selectedTitle').text('Información de órbita');
+            }
         }
         else if (selectedPage == 2) {
             $('.pageChanger').css('border-color', '#15161B');
@@ -229,6 +294,19 @@ $(document).ready(function () {
             $('#pageChanger3').css('border-color', '#FFFFFF');
             $('#pageChanger3 .subset').css('opacity', 1);
             $('#selectedTitle').text('Spacecraft Information');
+            if (lang == "en") {
+                $('#selectedTitle').text('Spacecraft Information');
+            } else if (lang == "tr") {
+                $('#selectedTitle').text('Uzay Aracı Bilgisi');
+            } else if (lang == "ru") {
+                $('#selectedTitle').text('Информация о космическом корабле');
+            } else if (lang == "zh") {
+                $('#selectedTitle').text('航天器信息');
+            } else if (lang == "fr") {
+                $('#selectedTitle').text('Informations sur l\'engin spatial');
+            } else if (lang == "es") {
+                $('#selectedTitle').text('Información de la nave espacial');
+            }
         }
         else if (selectedPage == 3) {
             $('.pageChanger').css('border-color', '#15161B');
@@ -236,6 +314,19 @@ $(document).ready(function () {
             $('#pageChanger4').css('border-color', '#FFFFFF');
             $('#pageChanger4 .subset').css('opacity', 1);
             $('#selectedTitle').text('Temperature Values');
+            if (lang == "en") {
+                $('#selectedTitle').text('Temperature Values');
+            } else if (lang == "tr") {
+                $('#selectedTitle').text('Sıcaklık Değerleri');
+            } else if (lang == "ru") {
+                $('#selectedTitle').text('Значения температуры');
+            } else if (lang == "zh") {
+                $('#selectedTitle').text('温度值');
+            } else if (lang == "fr") {
+                $('#selectedTitle').text('Valeurs de température');
+            } else if (lang == "es") {
+                $('#selectedTitle').text('Valores de temperatura');
+            }
         }
         else {
             selectedPage = 0;
@@ -244,6 +335,19 @@ $(document).ready(function () {
             $('#pageChanger1').css('border-color', '#FFFFFF');
             $('#pageChanger1 .subset').css('opacity', 1);
             $('#selectedTitle').text('External Values');
+            if (lang == "en") {
+                $('#selectedTitle').text('External Values');
+            } else if (lang == "tr") {
+                $('#selectedTitle').text('Dış Değerler');
+            } else if (lang == "ru") {
+                $('#selectedTitle').text('Внешние значения');
+            } else if (lang == "zh") {
+                $('#selectedTitle').text('外部价值');
+            } else if (lang == "fr") {
+                $('#selectedTitle').text('Valeurs externes');
+            } else if (lang == "es") {
+                $('#selectedTitle').text('Valores externos');
+            }
         }
 
     });
@@ -283,6 +387,19 @@ $(document).ready(function () {
         $('#pageChanger1').css('border-color', '#FFFFFF');
         $('#pageChanger1 .subset').css('opacity', 1);
         $('#selectedTitle').text('External Values');
+        if (lang == "en") {
+            $('#selectedTitle').text('External Values');
+        } else if (lang == "tr") {
+            $('#selectedTitle').text('Dış Değerler');
+        } else if (lang == "ru") {
+            $('#selectedTitle').text('Внешние значения');
+        } else if (lang == "zh") {
+            $('#selectedTitle').text('外部价值');
+        } else if (lang == "fr") {
+            $('#selectedTitle').text('Valeurs externes');
+        } else if (lang == "es") {
+            $('#selectedTitle').text('Valores externos');
+        }
     });
     $('#pageChanger2').click(function () {
         selectedPage = 1;
@@ -292,6 +409,19 @@ $(document).ready(function () {
         $('#pageChanger2').css('border-color', '#FFFFFF');
         $('#pageChanger2 .subset').css('opacity', 1);
         $('#selectedTitle').text('Orbit Information');
+        if (lang == "en") {
+            $('#selectedTitle').text('Orbit Information');
+        } else if (lang == "tr") {
+            $('#selectedTitle').text('Yörünge Bilgisi');
+        } else if (lang == "ru") {
+            $('#selectedTitle').text('Информация об орбите');
+        } else if (lang == "zh") {
+            $('#selectedTitle').text('轨道信息');
+        } else if (lang == "fr") {
+            $('#selectedTitle').text('Informations sur l\'orbite');
+        } else if (lang == "es") {
+            $('#selectedTitle').text('Información de órbita');
+        }
     });
     $('#pageChanger3').click(function () {
         selectedPage = 2;
@@ -301,6 +431,19 @@ $(document).ready(function () {
         $('#pageChanger3').css('border-color', '#FFFFFF');
         $('#pageChanger3 .subset').css('opacity', 1);
         $('#selectedTitle').text('Spacecraft Information');
+        if (lang == "en") {
+            $('#selectedTitle').text('Spacecraft Information');
+        } else if (lang == "tr") {
+            $('#selectedTitle').text('Uzay Aracı Bilgisi');
+        } else if (lang == "ru") {
+            $('#selectedTitle').text('Информация о космическом корабле');
+        } else if (lang == "zh") {
+            $('#selectedTitle').text('航天器信息');
+        } else if (lang == "fr") {
+            $('#selectedTitle').text('Informations sur l\'engin spatial');
+        } else if (lang == "es") {
+            $('#selectedTitle').text('Información de la nave espacial');
+        }
     });
     $('#pageChanger4').click(function () {
         selectedPage = 3;
@@ -310,6 +453,19 @@ $(document).ready(function () {
         $('#pageChanger4').css('border-color', '#FFFFFF');
         $('#pageChanger4 .subset').css('opacity', 1);
         $('#selectedTitle').text('Temperature Values');
+        if (lang == "en") {
+            $('#selectedTitle').text('Temperature Values');
+        } else if (lang == "tr") {
+            $('#selectedTitle').text('Sıcaklık Değerleri');
+        } else if (lang == "ru") {
+            $('#selectedTitle').text('Значения температуры');
+        } else if (lang == "zh") {
+            $('#selectedTitle').text('温度值');
+        } else if (lang == "fr") {
+            $('#selectedTitle').text('Valeurs de température');
+        } else if (lang == "es") {
+            $('#selectedTitle').text('Valores de temperatura');
+        }
     });
     var selectedIndex = 0;
     $(window).resize(function () {

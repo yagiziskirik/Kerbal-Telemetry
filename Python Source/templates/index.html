@@ -4,19 +4,19 @@
     <title>Kerbal Telemetry</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script src="/static/sources/translate.js"></script>
+    <link rel="stylesheet" href="/static/sources/bootstrap.min.css">
+    <script src="/static/sources/jquery-3.5.1.js"></script>
+    <script src="/static/sources/popper.min.js"></script>
+    <script src="/static/sources/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/sources/slick.css" />
     <link rel="stylesheet" type="text/css" href="/static/sources/style.css" />
     <link rel="icon" href="/static/logo.png" />
     <script type="text/javascript" src="/static/sources/gauge.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw==" crossorigin="anonymous"></script>
+    <script src="/static/sources/Chart.min.js"></script>
+    <script type="text/javascript" src="/static/sources/slick.min.js"></script>
+    <link rel="stylesheet" href="/static/sources/all.min.css" />
+    <script src="/static/sources/all.min.js"></script>
 
     <script src="/static/include/vec2.js"></script>
     <script src="/static/include/quadtree2.js"></script>
@@ -29,7 +29,7 @@
 </head>
 <body>
     <div class="orient">
-        <div class="orient-text">Please rotate your device horizontally.</div>
+        <div id="translate1" class="orient-text">Please rotate your device horizontally.</div>
     </div>
     <div class="intro"></div>
     <div class="wrapper noselect">
@@ -39,34 +39,34 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item" style="margin-left: 25px;">
-                        <p class="text-white small-text">SPACECRAFT</p>
+                        <p id="translate2" class="text-white small-text">SPACECRAFT</p>
                         <p class="text-white normal-text"><strong><span id="nameVar">None</span></strong></p>
                     </li>
                     <li class="nav-item" style="margin-left: 10vw;">
-                        <p class="text-white small-text">MISSION TIME</p>
+                        <p id="translate3" class="text-white small-text">MISSION TIME</p>
                         <p class="text-white normal-text"><strong><span id="timeVar">T+00:00:00</span></strong></p>
                     </li>
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item" style="margin-left: 30px;">
-                            <p class="text-white small-text">INERTIAL VELOCITY</p>
+                            <p id="translate4" class="text-white small-text">INERTIAL VELOCITY</p>
                             <p class="text-white normal-text"><strong><span id="speedVar">0.00km/s</span></strong></p>
                         </li>
                         <li class="nav-item" style="margin-left: 30px;">
-                            <p class="text-white small-text">ALTITUDE</p>
+                            <p id="translate5" class="text-white small-text">ALTITUDE</p>
                             <p class="text-white normal-text"><strong><span id="altVar">0.0km</span></strong></p>
                         </li>
                         <li class="nav-item" style="margin-left: 30px;">
-                            <p class="text-white small-text">APOGEE</p>
+                            <p id="translate6" class="text-white small-text">APOGEE</p>
                             <p class="text-white normal-text"><strong><span id="apVar">0.0km</span></strong></p>
                         </li>
                         <li class="nav-item" style="margin-left: 30px;">
-                            <p class="text-white small-text">PERIGEE</p>
+                            <p id="translate7" class="text-white small-text">PERIGEE</p>
                             <p class="text-white normal-text"><strong><span id="peVar">0.0km</span></strong></p>
                         </li>
                         <li class="nav-item" style="margin-left: 30px;">
-                            <p class="text-white small-text">INCLINATION</p>
+                            <p id="translate8" class="text-white small-text">INCLINATION</p>
                             <p class="text-white normal-text"><strong><span id="inclVar">0.00°</span></strong></p>
                         </li>
                     </ul>
@@ -81,26 +81,26 @@
                             <div class="border-left border-bottom border-right" style="background-color: #15161B; height: 81.9vh; width: 7vw; border-radius: 0 0 0 30px;">
                                 <div class="pageChanger" id="pageChanger1" style="border-color: #ffffff;">
                                     <img src="/static/sources/assets/whiteDot.png" style="width: 15px; height: auto;" />
-                                    <p class="text-white menu-big" style="">External</p>
-                                    <p class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Values</p>
+                                    <p id="translate9" class="text-white menu-big">External</p>
+                                    <p id="translate10" class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Values</p>
                                     <div class="subset" style="opacity: 1; height: 3px; width: 5vw; background-color: #20FBFD; margin-left: 0.5vw; margin-top: 7px; margin-bottom: 5px;"></div>
                                 </div>
                                 <div class="pageChanger" id="pageChanger2">
                                     <img src="/static/sources/assets/whiteDot.png" style="width: 15px; height: auto;" />
-                                    <p class="text-white menu-big">Orbit</p>
-                                    <p class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Information</p>
+                                    <p id="translate11" class="text-white menu-big">Orbit</p>
+                                    <p id="translate12" class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Information</p>
                                     <div class="subset" style="opacity: 0; height: 3px; width: 5vw; background-color: #20FBFD; margin-left: 0.5vw; margin-top: 7px; margin-bottom: 5px;"></div>
                                 </div>
                                 <div class="pageChanger" id="pageChanger3">
                                     <img src="/static/sources/assets/whiteDot.png" style="width: 15px; height: auto;" />
-                                    <p class="text-white menu-big">Spacecraft</p>
-                                    <p class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Information</p>
+                                    <p id="translate13" class="text-white menu-big">Spacecraft</p>
+                                    <p id="translate14" class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Information</p>
                                     <div class="subset" style="opacity: 0; height: 3px; width: 5vw; background-color: #20FBFD; margin-left: 0.5vw; margin-top: 7px; margin-bottom: 5px;"></div>
                                 </div>
                                 <div class="pageChanger" id="pageChanger4">
                                     <img src="/static/sources/assets/whiteDot.png" style="width: 15px; height: auto;" />
-                                    <p class="text-white menu-big">Temperature</p>
-                                    <p class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Values</p>
+                                    <p id="translate15" class="text-white menu-big">Temperature</p>
+                                    <p id="translate16" class="text-white" style="margin: -5px; padding: 0px; font-size: 0.8rem;">Values</p>
                                     <div class="subset" style="opacity: 0; height: 3px; width: 5vw; background-color: #20FBFD; margin-left: 0.5vw; margin-top: 7px; margin-bottom: 5px;"></div>
                                 </div>
                             </div>
@@ -115,117 +115,117 @@
                                         <div class="custom-carousel-inner text-white" style="height: 71.9vh; width: 100%;">
                                             <div class="inner-card">
                                                 <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Location Information</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate17">Location Information</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Altitude</span><span id="altVar2">0.0km</span></li>
-                                                    <li><span>Latitude</span><span id="latVar">0° 0.00' N</span></li>
-                                                    <li><span>Longitude</span><span id="longVar">0° 0.00' E</span></li>
+                                                    <li><span id="translate18">Altitude</span><span id="altVar2">0.0km</span></li>
+                                                    <li><span id="translate19">Latitude</span><span id="latVar">0° 0.00' N</span></li>
+                                                    <li><span id="translate20">Longitude</span><span id="longVar">0° 0.00' E</span></li>
                                                 </ul>
                                             </div>
                                             <div class="inner-card" style="margin-bottom: 25px;">
                                                 <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Atmosphere</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate20-5">Atmosphere</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Temperature</span><span id="tempVar">0°C</span></li>
-                                                    <li><span>Atmospheric Density</span><span id="atmDenVar">0kg/m<sup>3</sup></span></li>
+                                                    <li><span id="translate21">Temperature</span><span id="tempVar">0°C</span></li>
+                                                    <li><span id="translate22">Atmospheric Density</span><span id="atmDenVar">0kg/m<sup>3</sup></span></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="custom-carousel-inner text-white" style="height: 71.9vh; width: 100%;">
                                             <div class="inner-card">
                                                 <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Orbit Heights</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate23">Orbit Heights</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Apoapsis Height</span><span id="apHeightVar">0.0km</span></li>
-                                                    <li><span>Periapsis Height</span><span id="peHeightVar">0.0km</span></li>
+                                                    <li><span id="translate24">Apoapsis Height</span><span id="apHeightVar">0.0km</span></li>
+                                                    <li><span id="translate25">Periapsis Height</span><span id="peHeightVar">0.0km</span></li>
                                                 </ul>
                                             </div>
                                             <div class="inner-card">
                                                 <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Orbit Values</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate26">Orbit Values</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Inclination</span><span id="inclVar2">0°</span></li>
-                                                    <li><span>Eccentricity</span><span id="eccVar">0</span></li>
+                                                    <li><span id="translate27">Inclination</span><span id="inclVar2">0°</span></li>
+                                                    <li><span id="translate28">Eccentricity</span><span id="eccVar">0</span></li>
                                                 </ul>
                                             </div>
                                             <div class="inner-card" style="margin-bottom: 25px;">
                                                 <img src="/static/sources/assets/greenDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Time Values</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate29">Time Values</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Time to Apoapsis</span><span id="timeToAp">00:00:00</span></li>
-                                                    <li><span>Time to Periapsis</span><span id="timeToPe">00:00:00</span></li>
+                                                    <li><span id="translate30">Time to Apoapsis</span><span id="timeToAp">00:00:00</span></li>
+                                                    <li><span id="translate31">Time to Periapsis</span><span id="timeToPe">00:00:00</span></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="custom-carousel-inner text-white" style="height: 71.9vh; width: 100%;">
                                             <div class="inner-card">
                                                 <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>General</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate32">General</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Name</span><span id="nameVar2">None</span></li>
-                                                    <li><span>Mass</span><span id="massVar">0.0kg</span></li>
-                                                    <li><span>Part Count</span><span id="partCountVar">0</span></li>
+                                                    <li><span id="translate33">Name</span><span id="nameVar2">None</span></li>
+                                                    <li><span id="translate34">Mass</span><span id="massVar">0.0kg</span></li>
+                                                    <li><span id="translate35">Part Count</span><span id="partCountVar">0</span></li>
                                                 </ul>
                                             </div>
                                             <div class="inner-card" style="margin-bottom: 25px;">
                                                 <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Orbit Values</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate36">Orbit Values</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Total DeltaV</span><span id="deltaVVar">0m/s</span></li>
-                                                    <li><span>Acceleration</span><span id="accVar">0m/s<sup>2</sup></span></li>
-                                                    <li><span>G-Force</span><span id="gForceVar">0.00g</span></li>
-                                                    <li><span>Situation</span><span id="situationVar">Landed</span></li>
-                                                    <li><span>Distance Travelled</span><span id="distTravVar">0.0km</span></li>
+                                                    <li><span id="translate37">Total DeltaV</span><span id="deltaVVar">0m/s</span></li>
+                                                    <li><span id="translate38">Acceleration</span><span id="accVar">0m/s<sup>2</sup></span></li>
+                                                    <li><span id="translate39">G-Force</span><span id="gForceVar">0.00g</span></li>
+                                                    <li><span id="translate40">Situation</span><span id="situationVar">Landed</span></li>
+                                                    <li><span id="translate41">Distance Travelled</span><span id="distTravVar">0.0km</span></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="custom-carousel-inner text-white" style="height: 71.9vh; width: 100%;">
                                             <div class="inner-card">
                                                 <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Current</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate42">Current</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Outside Temperature</span><span id="tempVar2">0°</span></li>
-                                                    <li><span>Convection Flux</span><span id="convFlux">0</span></li>
-                                                    <li><span>Internal Flux</span><span id="intFlux">0</span></li>
-                                                    <li><span>Radiation Flux</span><span id="radFlux">0</span></li>
+                                                    <li><span id="translate43">Outside Temperature</span><span id="tempVar2">0°</span></li>
+                                                    <li><span id="translate44">Convection Flux</span><span id="convFlux">0</span></li>
+                                                    <li><span id="translate45">Internal Flux</span><span id="intFlux">0</span></li>
+                                                    <li><span id="translate46">Radiation Flux</span><span id="radFlux">0</span></li>
                                                 </ul>
                                             </div>
                                             <div class="inner-card">
                                                 <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Coolest</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate47">Coolest</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Coolest Temperature</span><span id="coolTemp">0°</span></li>
-                                                    <li><span>Coolest Skin Temperature</span><span id="coolSkinTemp">0°</span></li>
-                                                    <li><span>Coolest Skin Part Name</span><span id="coolSkinName">None</span></li>
+                                                    <li><span id="translate48">Coolest Temperature</span><span id="coolTemp">0°</span></li>
+                                                    <li><span id="translate49">Coolest Skin Temperature</span><span id="coolSkinTemp">0°</span></li>
+                                                    <li><span id="translate50">Coolest Skin Part Name</span><span id="coolSkinName">None</span></li>
                                                 </ul>
                                             </div>
                                             <div class="inner-card">
                                                 <img src="/static/sources/assets/greenDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Hottest</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate51">Hottest</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Hottest Temperature</span><span id="hotTemp">0°</span></li>
-                                                    <li><span>Hottest Skin Temperature</span><span id="hotSkinTemp">0°</span></li>
-                                                    <li><span>Hottest Skin Part Name</span><span id="hotSkinName">None</span></li>
+                                                    <li><span id="translate52">Hottest Temperature</span><span id="hotTemp">0°</span></li>
+                                                    <li><span id="translate53">Hottest Skin Temperature</span><span id="hotSkinTemp">0°</span></li>
+                                                    <li><span id="translate54">Hottest Skin Part Name</span><span id="hotSkinName">None</span></li>
                                                 </ul>
                                             </div>
                                             <div class="inner-card" style="margin-bottom: 25px;">
                                                 <img src="/static/sources/assets/crimsonDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong>Critical</strong></span>
+                                                <span class="text-white" style="display: inline; vertical-align: middle;"><strong id="translate55">Critical</strong></span>
                                                 <div class="long-line"></div>
                                                 <ul class="info-texts">
-                                                    <li><span>Critical Temperature</span><span id="critTemp">0°</span></li>
-                                                    <li><span>Critical Skin Temperature</span><span id="critSkinTemp">0°</span></li>
-                                                    <li><span>Critical Skin Part Name</span><span id="critSkinName">None</span></li>
+                                                    <li><span id="translate56">Critical Temperature</span><span id="critTemp">0°</span></li>
+                                                    <li><span id="translate57">Critical Skin Temperature</span><span id="critSkinTemp">0°</span></li>
+                                                    <li><span id="translate58">Critical Skin Part Name</span><span id="critSkinName">None</span></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -239,8 +239,8 @@
                                 <div class="globe-footer" style="height: 7vh; width: 55vw;">
                                     <ul class="navbar-nav mr-auto">
                                         <li class="nav-item" style="text-align: center;">
-                                            <p class="text-white small-text">CAMERA</p>
-                                            <p class="text-white small-text"><strong>Auto - Earth IO</strong></p>
+                                            <p id="translate59" class="text-white small-text">CAMERA</p>
+                                            <p class="text-white small-text"><strong id="translate60">Auto - Earth IO</strong></p>
                                         </li>
                                     </ul>
                                 </div>
@@ -256,7 +256,7 @@
                                     <div class="col-4">
                                         <div class="custom-card">
                                             <img src="/static/sources/assets/amberDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                            <span class="text-white" style="display: inline; vertical-align: middle;">FLIGHT PROFILE</span>
+                                            <span id="translate61" class="text-white" style="display: inline; vertical-align: middle;">FLIGHT PROFILE</span>
                                             <div class="long-line"></div>
                                             <div class="charts">
                                                 <canvas id="flightProfile"></canvas>
@@ -266,21 +266,21 @@
                                     <div class="col-4">
                                         <div class="custom-card custom-carousel-inner">
                                             <img src="/static/sources/assets/pinkDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                            <span class="text-white" style="display: inline; vertical-align: middle;">CURRENT VALUES</span>
+                                            <span id="translate62" class="text-white" style="display: inline; vertical-align: middle;">CURRENT VALUES</span>
                                             <div class="long-line"></div>
                                             <ul class="info-texts">
-                                                <li><span>Vertical Speed</span><span id="vertSpeed">0km/s</span></li>
-                                                <li><span>Horizontal Speed</span><span id="horizSpeed">0km/s</span></li>
-                                                <li><span>Mach</span><span id="mach">0.0M</span></li>
-                                                <li><span>Latitude</span><span id="latVar2">0° 0.00 N</span></li>
-                                                <li><span>Longitude</span><span id="longVar2">0° 0.00 E</span></li>
+                                                <li><span id="translate63">Vertical Speed</span><span id="vertSpeed">0km/s</span></li>
+                                                <li><span id="translate64">Horizontal Speed</span><span id="horizSpeed">0km/s</span></li>
+                                                <li><span id="translate65">Mach</span><span id="mach">0.0M</span></li>
+                                                <li><span id="translate66">Latitude</span><span id="latVar2">0° 0.00 N</span></li>
+                                                <li><span id="translate67">Longitude</span><span id="longVar2">0° 0.00 E</span></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="custom-card">
                                             <img src="/static/sources/assets/purpleDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                            <span class="text-white" style="display: inline; vertical-align: middle;">DELTA-V OVER TIME(ΔV/S)</span>
+                                            <span id="translate68" class="text-white" style="display: inline; vertical-align: middle;">DELTA-V OVER TIME(ΔV/S)</span>
                                             <div class="long-line"></div>
                                             <div class="charts">
                                                 <canvas id="dvTime"></canvas>
@@ -292,7 +292,7 @@
                                     <div class="col-4">
                                         <div class="custom-card">
                                             <img src="/static/sources/assets/blueDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                            <span class="text-white" style="display: inline; vertical-align: middle;">ALTITUDE OVER TIME (M/S)</span>
+                                            <span id="translate69" class="text-white" style="display: inline; vertical-align: middle;">ALTITUDE OVER TIME (M/S)</span>
                                             <div class="long-line"></div>
                                             <div class="charts">
                                                 <canvas id="altTime"></canvas>
@@ -302,7 +302,7 @@
                                     <div class="col-4">
                                         <div class="custom-card">
                                             <img src="/static/sources/assets/greenDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                            <span class="text-white" style="display: inline; vertical-align: middle;">APOGEE OVER TIME (M/S)</span>
+                                            <span id="translate70" class="text-white" style="display: inline; vertical-align: middle;">APOGEE OVER TIME (M/S)</span>
                                             <div class="long-line"></div>
                                             <div class="charts">
                                                 <canvas id="apTime"></canvas>
@@ -312,7 +312,7 @@
                                     <div class="col-4">
                                         <div class="custom-card">
                                             <img src="/static/sources/assets/crimsonDot.png" style="display: inline; width: 15px; height: auto; vertical-align: middle;" />
-                                            <span class="text-white" style="display: inline; vertical-align: middle;">VELOCITY OVER TIME (M/S²)</span>
+                                            <span id="translate71" class="text-white" style="display: inline; vertical-align: middle;">VELOCITY OVER TIME (M/S²)</span>
                                             <div class="long-line"></div>
                                             <div class="charts">
                                                 <canvas id="velTime"></canvas>
@@ -330,15 +330,15 @@
                             <div class="border-left border-bottom border-right" style="background-color: #15161B; height: 81.9vh; width: 100vw; border-radius: 0 0 30px 30px;">
                                 <div class="row">
                                     <div class="col-2" style="padding-left: 2vw; padding-top: 1vh;">
-                                        <span class="text-white" style="display: inline; vertical-align: middle;">TARGET DETAILS</span>
+                                        <span id="translate72" class="text-white" style="display: inline; vertical-align: middle;">TARGET DETAILS</span>
                                         <div class="long-line text-white"></div>
                                         <div class="custom-card-2">
                                             <ul class="info-texts">
-                                                <li><span>Name</span><span id="targetName2">0km/s</span></li>
-                                                <li><span>Distance</span><span id="targetDistance">0.0m</span></li>
-                                                <li><span>R. Speed</span><span id="relSpeed">0m/s</span></li>
-                                                <li><span>Latitude</span><span id="targetLat">0° 0.00 N</span></li>
-                                                <li><span>Longitude</span><span id="targetLong">0° 0.00 E</span></li>
+                                                <li><span id="translate73">Name</span><span id="targetName2">0km/s</span></li>
+                                                <li><span id="translate74">Distance</span><span id="targetDistance">0.0m</span></li>
+                                                <li><span id="translate75">R. Speed</span><span id="relSpeed">0m/s</span></li>
+                                                <li><span id="translate76">Latitude</span><span id="targetLat">0° 0.00 N</span></li>
+                                                <li><span id="translate77">Longitude</span><span id="targetLong">0° 0.00 E</span></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -364,11 +364,11 @@
                                         </div>
                                     </div>
                                     <div class="col-2" style="padding-right: 2vw; padding-top: 1vh;">
-                                        <span class="text-white" style="display: inline; vertical-align: middle;">FLIGHT COMMANDS</span>
+                                        <span id="translate78" class="text-white" style="display: inline; vertical-align: middle;">FLIGHT COMMANDS</span>
                                         <div class="long-line text-white"></div>
-                                        <button class="custom-btn btn" id="ascendButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Start Ascend</button>
-                                        <button class="custom-btn btn" id="rendezvousButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Rendezvous With Target</button>
-                                        <button class="custom-btn btn" id="dockButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Dock With Target</button>
+                                        <button id="translate79" class="custom-btn btn" id="ascendButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Start Ascend</button>
+                                        <button id="translate80" class="custom-btn btn" id="rendezvousButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Rendezvous With Target</button>
+                                        <button id="translate81" class="custom-btn btn" id="dockButton"><img src="/static/sources/assets/fourDots.png" style="height: 0.7rem; width: auto; vertical-align: middle;" />   Dock With Target</button>
                                     </div>
                                 </div>
                             </div>
@@ -395,14 +395,14 @@
                 <div class="center-bottom-navbar-column form-inline">
                     <ul class="navbar-nav mr-auto" style="display: flex; align-items: center;">
                         <li class="nav-item right-border" style="margin-right: 30px;">
-                            <p class="text-white small-text">CURRENT STAGE</p>
-                            <p class="text-white custom-small text-right">Stage <span id="currentStage">0</span></p>
+                            <p id="translate82" class="text-white small-text">CURRENT STAGE</p>
+                            <p id="translate83" class="text-white custom-small text-right">Stage <span id="currentStage">0</span></p>
                         </li>
                     </ul>
                     <button id="stageButton" class="stage-btn btn">STAGE NOW</button>
                     <ul class="navbar-nav mr-auto" style="display: flex; align-items: center;">
                         <li class="nav-item left-border" style="margin-left: 30px;">
-                            <p class="text-white small-text">PLANET</p>
+                            <p id="translate84" class="text-white small-text">PLANET</p>
                             <p class="text-white custom-small" id="planet">Kerbin</p>
                         </li>
                     </ul>

@@ -34,12 +34,21 @@ def rendezvouz():
 		f.write("0")
 	return "Rendezvouz Initiated"
 
+@app.route("/refreshRate")
+def refreshRates():
+	filename = os.path.join(app.static_folder, 'refreshRate.json')
+
+	with open(filename, encoding="utf8", errors="surrogateescape") as file:
+		data = file.read()
+
+	return data
+
 @app.route("/orbit")
 def orbitChecker():
 	filename = os.path.join(app.static_folder, 'orbit.json')
 
-	with open(filename) as file:
-		data = json.load(file)
+	with open(filename, encoding="utf8", errors="surrogateescape") as file:
+		data = file.read()
 
 	return data
 
@@ -47,8 +56,8 @@ def orbitChecker():
 def altOverTime():
 	filename = os.path.join(app.static_folder, 'altOverTime.json')
 
-	with open(filename) as file:
-		data = json.load(file)
+	with open(filename, encoding="utf8", errors="surrogateescape") as file:
+		data = file.read()
 
 	return data
 
@@ -56,8 +65,8 @@ def altOverTime():
 def fPOverTime():
 	filename = os.path.join(app.static_folder, 'fPOverTimeData.json')
 
-	with open(filename) as file:
-		data = json.load(file)
+	with open(filename, encoding="utf8", errors="surrogateescape") as file:
+		data = file.read()
 
 	return data
 
@@ -65,8 +74,8 @@ def fPOverTime():
 def apogeeOverTime():
 	filename = os.path.join(app.static_folder, 'apogeeOverTimeData.json')
 
-	with open(filename) as file:
-		data = json.load(file)
+	with open(filename, encoding="utf8", errors="surrogateescape") as file:
+		data = file.read()
 
 	return data
 
@@ -74,8 +83,8 @@ def apogeeOverTime():
 def velOverTime():
 	filename = os.path.join(app.static_folder, 'velOverTimeData.json')
 
-	with open(filename) as file:
-		data = json.load(file)
+	with open(filename, encoding="utf8", errors="surrogateescape") as file:
+		data = file.read()
 
 	return data
 
@@ -83,8 +92,8 @@ def velOverTime():
 def dVOverTime():
 	filename = os.path.join(app.static_folder, 'dVOverTimeData.json')
 
-	with open(filename) as file:
-		data = json.load(file)
+	with open(filename, encoding="utf8", errors="surrogateescape") as file:
+		data = file.read()
 
 	return data
 
@@ -92,8 +101,8 @@ def dVOverTime():
 def liveUpdate():
 	filename = os.path.join(app.static_folder, 'data.json')
 
-	with open(filename) as file:
-		data = json.load(file)
+	with open(filename, encoding="utf8", errors="surrogateescape") as file:
+		data = file.read()
 
 
 	return data

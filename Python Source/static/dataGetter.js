@@ -1,4 +1,7 @@
 var orbit = false;
+var refreshRate = 100;
+var chartsRate = 1000;
+var lang = "en";
 
 function secondsToHms(d) {
     d = Number(d);
@@ -35,6 +38,26 @@ function convertDMSLon(lng) {
 
     return longitude + " " + longitudeCardinal;
 }
+
+function refreshRates() {
+    $.ajax({
+        type: "Get",
+        url: "/refreshRate",
+        dataType: "json",
+        success: function (data) {
+            refreshRate = data.refreshRate;
+            chartsRate = data.chartsRate;
+            if (lang == data.lang) {
+                lang = data.lang;
+            } else {
+                lang = data.lang;
+                translate(lang);
+            }
+        }
+    });
+}
+
+refreshRates();
 
 function updateAltOverTime() {
     $.ajax({
@@ -235,7 +258,7 @@ function updateData() {
             }
         }
     });
-    setTimeout(updateData, 100);
+    setTimeout(updateData, refreshRate);
 }
 
 function updateCharts() {
@@ -245,8 +268,8 @@ function updateCharts() {
     updatedVOverTime();
     updatefPOverTime();
     checkOrbit()
-    setTimeout(updateCharts, 1000);
+    setTimeout(updateCharts, chartsRate);
 }
 
-updateCharts();
-updateData();
+setTimeout(function () { updateCharts(); }, 4000);
+setTimeout(function () { updateData(); }, 4000);

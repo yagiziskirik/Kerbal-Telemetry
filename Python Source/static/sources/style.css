@@ -34,6 +34,38 @@
     border-color: #15161B;
 }
 
+.pageChanger:hover {
+    background-color: #ffffff13;
+}
+
+.pageChanger:active {
+    background-color: #ffffff33;
+}
+
+.stage-btn:hover {
+    background-color: #ffffff13;
+}
+
+.stage-btn:active {
+    background-color: #ffffff33;
+}
+
+.fa-arrow-left:hover {
+    background-color: #2f313a!important;
+}
+
+.fa-arrow-left:active {
+    background-color: #4c4d5c!important;
+}
+
+.fa-arrow-right:hover {
+    background-color: #2f313a!important;
+}
+
+.fa-arrow-right:active {
+    background-color: #4c4d5c!important;
+}
+
 .menu-big {
     margin: 0px;
     padding: 0px;
@@ -162,6 +194,14 @@ ul.info-texts span + span {
     padding: 0.8rem 0;
     font-size: 0.75rem;
     width: 100%;
+}
+
+.custom-btn:hover {
+    background-color: #2f313a;
+}
+
+.custom-btn:active {
+    background-color: #4c4d5c;
 }
 
 .custom-small {
