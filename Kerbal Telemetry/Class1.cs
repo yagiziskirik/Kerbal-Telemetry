@@ -209,11 +209,11 @@ namespace Kerbal_Telemetry
                     string finalApogeeOverTime = "{ \"data\": [" + apogeeOverTimeData + "]}";
                     string finalVelOverTime = "{ \"data\": [" + velOverTimeData + "]}";
                     string finalDVOverTimee = "{ \"data\": [" + dVOverTimeData + "]}";
-                    File.WriteAllText(@"Kerbal Telemetry\static\altOverTime.json", finalAltOverTime);
-                    File.WriteAllText(@"Kerbal Telemetry\static\fPOverTimeData.json", finalFPOverTime);
-                    File.WriteAllText(@"Kerbal Telemetry\static\apogeeOverTimeData.json", finalApogeeOverTime);
-                    File.WriteAllText(@"Kerbal Telemetry\static\velOverTimeData.json", finalVelOverTime);
-                    File.WriteAllText(@"Kerbal Telemetry\static\dVOverTimeData.json", finalDVOverTimee);
+                    File.WriteAllText(@"GameData\Kerbal Telemetry\static\altOverTime.json", finalAltOverTime);
+                    File.WriteAllText(@"GameData\Kerbal Telemetry\static\fPOverTimeData.json", finalFPOverTime);
+                    File.WriteAllText(@"GameData\Kerbal Telemetry\static\apogeeOverTimeData.json", finalApogeeOverTime);
+                    File.WriteAllText(@"GameData\Kerbal Telemetry\static\velOverTimeData.json", finalVelOverTime);
+                    File.WriteAllText(@"GameData\Kerbal Telemetry\static\dVOverTimeData.json", finalDVOverTimee);
                 }
             }
             string serializeData = "\"altitude\":{0},\"distanceTraveled\":{1},\"externalTemperature\":{2},\"GForce\":{3},\"canComm\":\"{4}\",\"situation\":\"{5}\",\"timeToPe\":{6},\"lat\":{7},\"lon\":{8},\"verticalSpeed\":{9},\"missionTime\":{10},\"speed\":{11},\"name\":\"{12}\",\"atmDensity\":{13},\"currentStage\":{14},\"deltaV\":{15},\"timeToAp\":{16},\"orbitSpeed\":{17},\"orbitIncl\":{18},\"orbitEcc\":{19},\"ApA\":{20},\"PeA\":{21},\"horizSpeed\":{22},\"partCount\":{23},\"mass\":{24},\"acceleration\":{25},\"convFlux\":{26},\"radFlux\":{27},\"intFlux\":{28},\"planetName\":\"{29}\",\"yaw\":{30},\"pitch\":{31},\"roll\":{32},\"coolTemp\":{33},\"coolSkinTemp\":{34},\"coolSkinName\":\"{35}\",\"hotTemp\":{36},\"hotSkinTemp\":{37},\"hotSkinName\":\"{38}\",\"critTemp\":{39},\"critSkinTemp\":{40},\"critSkinName\":\"{41}\",\"targetName\":\"{42}\",\"distance\":{43},\"targetSpeed\":{44},\"targetLat\":{45},\"targetLong\":{46}";
