@@ -385,3 +385,17 @@ ul.info-texts span + span {
     fill: #ffffff;
     font-family: inherit;
 }
+
+.settings-header {
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown-item.active {
+    background-color: #1FE327;
+    color: white;
+}

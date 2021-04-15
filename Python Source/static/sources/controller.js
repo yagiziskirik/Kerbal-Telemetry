@@ -488,8 +488,10 @@ $(document).ready(function () {
             var $this = $('#firstSelector img');
         } else if (selectedIndex == 1) {
             var $this = $('#secondSelector img');
-        } else {
+        } else if (selectedIndex == 2) {
             var $this = $('#thirdSelector img');
+        } else {
+            var $this = $('#fourthSelector img');
         }
         var selector = $('.selectionIndicator');
         var selectorWidth = selector.width();
@@ -542,7 +544,63 @@ $(document).ready(function () {
         setTimeout(function () { $('.attitude canvas').css('border', 'none'); }, 1010);
         setTimeout(function () { document.getElementsByTagName("text")[4].innerHTML = "SPEED"; }, 100);
     });
+    $('#fourthSelector').click(function () {
+        var selector = $('.selectionIndicator');
+        var selectorWidth = selector.width();
+        var $this = $('#fourthSelector img');
+        var offset = $this.offset();
+        var width = $this.width();
+        var centerX = offset.left + width / 2;
+        var exactPlace = centerX - selectorWidth / 2;
+        selector.css('left', exactPlace);
+        selectedIndex = 3;
+        alignHighligh();
+    });
 });
+
+function languageSelector(lang) {
+    selectedLanguage = lang;
+    if (lang == "en") {
+        $('#languageSelector').text('English');
+        $('.dropdown-item').removeClass('active');
+        $('#langEn').addClass('active');
+    } else if (lang == "ru") {
+        $('#languageSelector').text('Pусский');
+        $('.dropdown-item').removeClass('active');
+        $('#langRu').addClass('active');
+    } else if (lang == "zh") {
+        $('#languageSelector').text('中文');
+        $('.dropdown-item').removeClass('active');
+        $('#langZh').addClass('active');
+    } else if (lang == "tr") {
+        $('#languageSelector').text('Türkçe');
+        $('.dropdown-item').removeClass('active');
+        $('#langTr').addClass('active');
+    } else if (lang == "fr") {
+        $('#languageSelector').text('Français');
+        $('.dropdown-item').removeClass('active');
+        $('#langFr').addClass('active');
+    } else if (lang == "es") {
+        $('#languageSelector').text('Español');
+        $('.dropdown-item').removeClass('active');
+        $('#langEs').addClass('active');
+    } else if (lang == "jp") {
+        $('#languageSelector').text('日本語');
+        $('.dropdown-item').removeClass('active');
+        $('#langJp').addClass('active');
+    } else if (lang == "uk") {
+        $('#languageSelector').text('Український');
+        $('.dropdown-item').removeClass('active');
+        $('#langUk').addClass('active');
+    }
+}
+
+function saveSettings() {
+    var chartsRateNew = $('#chartRefreshRate').val();
+    var refreshRateNew = $('#refreshRate').val();
+    $.get('/sendValues', {language: selectedLanguage, chartsRate: chartsRateNew, refreshRate: refreshRateNew});
+    setTimeout(function(){location.assign("/");}, 1000);
+}
 
 var flightProfile = document.getElementById('flightProfile');
 var flightProfileChart = new Chart(flightProfile, {

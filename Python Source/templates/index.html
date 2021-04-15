@@ -375,6 +375,57 @@
                         </div>
                     </div>
                 </div>
+                <div class="carousel-item">
+                    <div class="container-fluid" style="height: 82vh; z-index: 1000;">
+                        <div class="row">
+                            <div class="border-left border-bottom border-right" style="background-color: #15161B; height: 81.9vh; width: 100vw; border-radius: 0 0 30px 30px; padding: 5rem;">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <h3 class="settings-header" id="translate85">Language</h3>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="languageSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                English
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="languageSelector">
+                                                <a id="langEn" class="dropdown-item active" onclick="languageSelector('en')">English</a>
+                                                <a id="langRu" class="dropdown-item" onclick="languageSelector('ru')">Pусский</a>
+                                                <a id="langZh" class="dropdown-item" onclick="languageSelector('zh')">中文</a>
+                                                <a id="langTr" class="dropdown-item" onclick="languageSelector('tr')">Türkçe</a>
+                                                <a id="langFr" class="dropdown-item" onclick="languageSelector('fr')">Français</a>
+                                                <a id="langEs" class="dropdown-item" onclick="languageSelector('es')">Español</a>
+                                                <a id="langJp" class="dropdown-item" onclick="languageSelector('jp')">日本語</a>
+                                                <a id="langUk" class="dropdown-item" onclick="languageSelector('uk')">Український</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <h3 class="settings-header" id="translate86">Refresh Rate</h3>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="number" class="form-control btn-secondary" min="0" max="20000" id="refreshRate" placeholder="200" value="200">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <h3 class="settings-header" id="translate87">Chart Refresh Rate</h3>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="number" class="form-control btn-secondary" min="0" max="20000" id="chartRefreshRate" placeholder="1200" value="1200">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button id="translate88" class="btn btn-secondary" type="button" onclick="saveSettings()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #23242B; height: 8vh;">
@@ -390,6 +441,9 @@
                     </li>
                     <li id="thirdSelector" data-target="#carouselExampleIndicators" data-slide-to="2" class="nav-item" style="padding-left: 1vw; padding-right: 1vw; cursor: pointer;">
                         <img src="/static/sources/assets/spacecraft.png" style="height: 4vh; width: auto;" />
+                    </li>
+                    <li id="fourthSelector" data-target="#carouselExampleIndicators" data-slide-to="3" class="nav-item" style="padding-left: 1vw; padding-right: 1vw; cursor: pointer;">
+                        <img src="/static/sources/assets/settings.png" style="height: 4vh; width: auto;" />
                     </li>
                 </ul>
                 <div class="center-bottom-navbar-column form-inline">

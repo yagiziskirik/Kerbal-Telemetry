@@ -2,6 +2,7 @@ var orbit = false;
 var refreshRate = 100;
 var chartsRate = 1000;
 var lang = "en";
+var selectedLanguage = "en";
 
 function secondsToHms(d) {
     d = Number(d);
@@ -46,11 +47,15 @@ function refreshRates() {
         dataType: "json",
         success: function (data) {
             refreshRate = data.refreshRate;
+            $('#refreshRate').val(refreshRate);
             chartsRate = data.chartsRate;
+            $('#chartRefreshRate').val(chartsRate);
             if (lang == data.lang) {
                 lang = data.lang;
+                selectedLanguage = lang;
             } else {
                 lang = data.lang;
+                selectedLanguage = lang;
                 translate(lang);
             }
         }

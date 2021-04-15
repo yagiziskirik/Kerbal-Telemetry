@@ -1,6 +1,11 @@
-from flask import Flask, render_template, json
+from flask import Flask, render_template, json, request
 import os
+import settings
 import subprocess
+
+if os.path.exists("firststart.cfg") == False:
+	settings.langChooser()
+
 app = Flask(__name__)
 
 subprocess.Popen("python stager.py")
@@ -15,6 +20,19 @@ def stage():
 	with open("stage.txt", "w") as f:
 		f.write("0")
 	return "Stage Successful"
+
+@app.route("/sendValues")
+def sendValues():
+	language = request.args.get("language")
+	chartsRate = request.args.get("chartsRate")
+	refreshRate = request.args.get("refreshRate")
+	print(language)
+	print(chartsRate)
+	print(refreshRate)
+	filename = os.path.join(app.static_folder, 'refreshRate.json')
+	writing = "{\"refreshRate\":"+refreshRate+", \"chartsRate\": "+chartsRate+", \"lang\": \""+language+"\"}"
+	with open(filename, "w") as f:
+		f.write(writing)
 
 @app.route("/ascend")
 def ascend():

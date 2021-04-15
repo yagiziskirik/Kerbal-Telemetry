@@ -41,6 +41,7 @@ def dockAP():
 
 def rendezvouzAP():
 	mj = conn.mech_jeb
+	executor = mj.node_executor
 	print("Planning Hohmann transfer")
 	planner = mj.maneuver_planner
 	hohmann = planner.operation_transfer
@@ -108,20 +109,23 @@ def ascentAP():
 				enabled.wait()
 
 	with open(os.path.join("static", "orbit.json"), "w") as f:
-		f.write("{\"orbit\":1}");
+		f.write("{\"orbit\":1}")
 	print("Launch complete!")
 
 while True:
-	ascend = os.path.exists("ascend.txt")
-	if ascend:
-		os.remove("ascend.txt")
-		ascentAP()
-	rendezvouz = os.path.exists("rendezvouz.txt")
-	if rendezvouz:
-		os.remove("rendezvouz.txt")
-		rendezvouzAP()
-	dock = os.path.exists("dock.txt")
-	if dock:
-		os.remove("dock.txt")
-		dockAP()
-	time.sleep(0.1)
+	try:
+		ascend = os.path.exists("ascend.txt")
+		if ascend:
+			os.remove("ascend.txt")
+			ascentAP()
+		rendezvouz = os.path.exists("rendezvouz.txt")
+		if rendezvouz:
+			os.remove("rendezvouz.txt")
+			rendezvouzAP()
+		dock = os.path.exists("dock.txt")
+		if dock:
+			os.remove("dock.txt")
+			dockAP()
+		time.sleep(0.1)
+	except Exception as e:
+		print(e)
