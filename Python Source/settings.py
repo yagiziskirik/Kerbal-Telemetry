@@ -150,11 +150,11 @@ def langChooser():
         print("Ayarlar başarıyla uygulandı. Lütfen web arayüzünü yeniden başlatın.")
         time.sleep(3.5)
     elif lang == "5":  # French
-        print("La langue de l'interface Web est maintenant sélectionnée comme le français.")
+        print("La langue de l'interface Web est maintenant sélectionnée en français.")
         print("Le taux de rafraîchissement et le taux de rafraîchissement du graphique sont des paramètres qui affecteront les performances du programme.")
-        print("Plus vous définissez ces valeurs, plus le programme sera léger.")
-        print("Plus bas vous définissez ces valeurs, cela devient plus \"en temps réel\".")
-        print("Veuillez n'entrer que les nombres que vous souhaitez définir:")
+        print("Plus vous élevez ces valeurs, moins le programme ralentira votre ordinateur.")
+        print("Si vous diminuez ces valeurs, le programme sera plus proche du \"temps réel\".")
+        print("Veuillez n'entrer que des nombres que vous souhaitez définir:")
         refRateSet = False
         while refRateSet == False:
             try:
