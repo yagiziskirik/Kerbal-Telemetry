@@ -39,6 +39,7 @@ If you see any problems or if you want to translate the program to your language
 * kRPC MechJeb
 
 ## Setup
+*You can find [@Grenzoocoon](https://www.curseforge.com/members/grenzoocoon)'s installation video from the [following link](https://www.youtube.com/watch?v=8u0Z4Brmbh4).*
 * Export files to GameData folder.
 * Install [Python 3.5](https://www.python.org/downloads/) or higher.
 * Install [MechJeb](https://www.curseforge.com/kerbal/ksp-mods/mechjeb). *(Note: If you install the latest version of MechJeb, it gives some errors when you start KSP and start of a new flight, but it works just fine.)*
