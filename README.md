@@ -1,5 +1,5 @@
 # Kerbal-Telemetry
-![Version 2.2.0](https://img.shields.io/badge/version-2.2.0-blue) ![Licence](https://img.shields.io/badge/Licence-MIT-green) ![Maintenance](https://img.shields.io/maintenance/yes/2021)
+![Version 2.2.0](https://img.shields.io/badge/version-2.2.0-blue) ![Licence](https://img.shields.io/badge/Licence-MIT-green) ![Maintenance](https://img.shields.io/maintenance/yes/2022)
 
 Telemetry addon for Kerbal Space Program. The program uses a server that is running on the KSP side and a client which is capable of running both the KSP side computer or any other one over a web browser. This means you can connect to the server from any device which is capable of running it over a web browser by entering your server computer's local address and 5000 as the port, for example: ```http://192.168.1.104:5000```.
 
@@ -47,6 +47,10 @@ If you see any problems or if you want to translate the program to your language
 * Install Flask and kRPC dependencies for Python:
 ```sh
 $ pip install Flask krpc
+```
+*Note: thanks to the [@Grenzoocoon](https://www.curseforge.com/members/grenzoocoon), setuptools no longer supports 2to3, so in order to fix it you can downgrade the setuptools to any version under 58.0.0 with the following command:*
+```sh
+$ pip install setuptools==57.5.0
 ```
 * (Optional) Run *"Create Shortcut (Win)"* file to create a shortcut to the desktop.
 * Run the KSP and start any save game (or start a new one).
