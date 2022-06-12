@@ -37,7 +37,7 @@ If you see any problems or if you want to translate the program to your language
 * Done!
 
 ## Usage
-![Usage](https://i.ibb.co/VjFsP64/newGui.png)
+![Usage](https://i.ibb.co/wRD1pKw/newGui.png)
 * Click to the toolbar icon to open up user interface.
 * Start server via the corresponding button.
 * Connect to your computer's local IP address and 8000 as the port (or localhost if you are using the same computer) on your browser on your device preferably from another computer or from which KSP is installed (ex. localhost:8000 or 127.0.0.1:8000 or 192.168.1.102:8000).
