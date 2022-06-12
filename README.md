@@ -1,5 +1,5 @@
 # Kerbal Telemetry
-![Version 2.3.0](https://img.shields.io/badge/version-2.3.0-blue) ![License](https://img.shields.io/badge/Licence-MIT-green) ![Maintenance](https://img.shields.io/maintenance/yes/2023)
+![Version 2.3.0](https://img.shields.io/badge/version-2.3.0-blue) ![License](https://img.shields.io/badge/Licence-MIT-green) ![Maintenance](https://img.shields.io/maintenance/yes/2023) [![pages-build-deployment](https://github.com/yagiziskirik/Kerbal-Telemetry/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/yagiziskirik/Kerbal-Telemetry/actions/workflows/pages/pages-build-deployment)
 
 Telemetry addon for Kerbal Space Program. The program uses a server that is running on the KSP side and a client which is capable of running both the KSP side computer or any other one over a web browser. This means you can connect to the server from any device which is capable of running it over a web browser by entering your server computer's local address and 8000 as the port, for example: ```http://192.168.1.104:8000```.
 
