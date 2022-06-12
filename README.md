@@ -1,22 +1,20 @@
-# Kerbal-Telemetry
-![Version 2.2.0](https://img.shields.io/badge/version-2.2.0-blue) ![Licence](https://img.shields.io/badge/Licence-MIT-green) ![Maintenance](https://img.shields.io/maintenance/yes/2022)
+# Kerbal Telemetry
+![Version 2.3.0](https://img.shields.io/badge/version-2.3.0-blue) ![License](https://img.shields.io/badge/Licence-MIT-green) ![Maintenance](https://img.shields.io/maintenance/yes/2023)
 
-Telemetry addon for Kerbal Space Program. The program uses a server that is running on the KSP side and a client which is capable of running both the KSP side computer or any other one over a web browser. This means you can connect to the server from any device which is capable of running it over a web browser by entering your server computer's local address and 5000 as the port, for example: ```http://192.168.1.104:5000```.
-
-> This program requires lots of computing power. It is been advised to use this program with another computer or second screen.
+Telemetry addon for Kerbal Space Program. The program uses a server that is running on the KSP side and a client which is capable of running both the KSP side computer or any other one over a web browser. This means you can connect to the server from any device which is capable of running it over a web browser by entering your server computer's local address and 8000 as the port, for example: ```http://192.168.1.104:8000```.
 
 ![Intro](https://i.ibb.co/XC76347/logo.gif)
 
 ## Features
 * Real-time sync with the KSP.
-* Accessible over the LAN, from any device which is powerful enough.
+* Accessible over the LAN.
 * Full-featured 3D Kerbin map with real pinpoints on it.
 * Real-time attitude indicator.
 * Target name, distance and speed.
 * Real-time telemetry data.
-* Controlling the vessel from the interface.
-* Staging from the interface.
-* Cool animation when you reach the orbit (when executed from the interface).
+* ~~Controlling the vessel from the interface.~~ (Will be fixed on oncoming updates)
+* ~~Staging from the interface.~~ (Will be fixed on oncoming updates)
+* Cool animation when you reach the orbit ~~(when executed from the interface)~~.
 * Multi-language support (English, Russian, Japanese, Turkish, Ukrainian, Chinese, French, Spanish).
 * General information about KSP, spaceship and many more.
 
@@ -32,44 +30,21 @@ If you see any problems or if you want to translate the program to your language
 * Spanish - Auto-translated
 
 ## Dependencies
-* Flask (for Python)<br>
-> Note that the following dependencies are recommended to use controlling from the interface. You can use the program for monitoring only without installing the following dependencies (Stage Now, Start Ascend, Rendezvous With Target and Dock With Target buttons won't work):
-* MechJeb (v2.9.1.0 for not having errors. Thanks to [Genhis](https://github.com/Genhis))
-* kRPC
-* kRPC MechJeb
+* None!
 
 ## Setup
-*You can find [@Grenzoocoon](https://www.curseforge.com/members/grenzoocoon)'s installation video from the [following link](https://www.youtube.com/watch?v=8u0Z4Brmbh4).*
 * Export files to GameData folder.
-* Install [Python 3.5](https://www.python.org/downloads/) or higher.
-* Install [MechJeb](https://www.curseforge.com/kerbal/ksp-mods/mechjeb). *(Note: If you install the latest version of MechJeb, it gives some errors when you start KSP and start of a new flight, but it works just fine.)*
-* Install [kRPC](https://krpc.github.io/krpc/getting-started.html).
-* Install [kRPC MechJeb](https://genhis.github.io/KRPC.MechJeb/installation.html).
-* Install Flask and kRPC dependencies for Python:
-```sh
-$ pip install Flask krpc
-```
-*Note: thanks to the [@Grenzoocoon](https://www.curseforge.com/members/grenzoocoon), setuptools no longer supports 2to3, so in order to fix it you can downgrade the setuptools to any version under 58.0.0 with the following command:*
-```sh
-$ pip install setuptools==57.5.0
-```
-* (Optional) Run *"Create Shortcut (Win)"* file to create a shortcut to the desktop.
-* Run the KSP and start any save game (or start a new one).
-* Open the kRPC menu and add a new server.
-* Click on *Show advanced settings* and check *Auto-start server* and *Auto-accept new clients*.
-Done!
+* Done!
 
 ## Usage
-* Run server script (from the desktop shortcut or from the main file which includes *TelemetryServer.py*).
-* On the first start, the program will ask you which language do you want to choose, refresh rate and chart refresh rate.
-> Refresh rate is in how many milliseconds the program recycles data on the whole page.<br><br>
-> And Chart refresh rate is in how many milliseconds the program recycles the telemetry graphics data (note that this data is created each second dependent on your computer's power).<br><br>
-> If you wish to stick with the standard values, press enter to skip these two steps.
-* Connect to your computer's local IP address and 5000 as the port (or localhost if you are using the same computer) on your browser on your device preferably from another computer or from which KSP is installed (ex. localhost:5000 or 127.0.0.1:5000 or 192.168.1.102:5000).
+![Usage](https://i.ibb.co/VjFsP64/newGui.png)
+* Click to the toolbar icon to open up user interface.
+* Start server via the corresponding button.
+* Connect to your computer's local IP address and 8000 as the port (or localhost if you are using the same computer) on your browser on your device preferably from another computer or from which KSP is installed (ex. localhost:8000 or 127.0.0.1:8000 or 192.168.1.102:8000).
 
 On the top bar you can see:
 * Spacecraft name.
-* Misson time after the take-off.
+* Mission time after the take-off.
 * Speed.
 * Altitude.
 * Apogee.
@@ -125,7 +100,7 @@ On the bottom bar:
 ![Usage 7](https://i.ibb.co/Gkh1RS2/Github-7.png)
 > Settings page.
 
-Usage is very simple. After you run the server script, start the game. When you start a flight, the telemetry plugin will become active. You will see the charts will refresh when you are airborne and below 90,000 meters.
+Usage is very simple. Start the game. When you start a flight, activate telemetry plugin from toolbar. You will see the charts will refresh when you are airborne and below 90,000 meters.
 
 ## Special Thanks
 I would like to thank [@MekoNix](https://github.com/MekoNix), [@Aebestach](https://github.com/Aebestach), [@Genhis](https://github.com/Genhis) and [@NguyenAirlines](https://www.curseforge.com/members/nguyenairlines) for their contribution and ideas.
