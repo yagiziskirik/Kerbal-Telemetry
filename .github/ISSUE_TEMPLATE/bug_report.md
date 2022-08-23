@@ -28,7 +28,6 @@ If applicable, add screenshots to help explain your problem (especially Python a
  - Browser: [e.g. chrome, safari]
  - Kerbal Telemetry Version: [e.g. v2.2.1]
  - KSP Version: [e.g. 1.12.3]
- - Python Version: [e.g. 3.8.0]
 
 **Additional context**
 Add any other context about the problem here.
