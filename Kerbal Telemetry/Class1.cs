@@ -32,23 +32,98 @@ namespace Kerbal_Telemetry
         public float timer = 0.0f;
 
         private Rect _windowPosition = new Rect();
-        private GUIStyle _windowStyle, _labelStyle, _buttonStyle;
+        private GUIStyle _windowStyle, _labelStyle, _buttonStyle, _inputStyle;
         private bool _hasInitStyles = false;
         private bool toggleServerActive = false;
+        private bool hasPart = false;
+
+        private bool hide_all_windows = true;
+        // private Texture2D launcherButtonTexture = GameDatabase.Instance.GetTexture("KerbalTelemetry/Textures/logo", false);
+
+        public void OnDisable()
+        {
+            StopServer();
+            if (launcherButton != null)
+            {
+                ApplicationLauncher.Instance.RemoveModApplication(launcherButton);
+                launcherButton = null;
+            }
+        }
+
+        public void Start()
+        {
+            CheckForPart();
+            UnityEngine.Debug.Log("[Kerbal Telemetry] Has part: " + hasPart);
+        }
+
+        private void CheckForPart()
+        {
+            bool returnVal = false;
+            List<Part> parts = FlightGlobals.ActiveVessel.parts;
+            parts.ForEach((part) =>
+            {
+                if (part.name.Contains("KerbalTelemetryComputationalUnit")) returnVal = true;
+            });
+            hasPart = returnVal;
+        }
+
+        public void LauncherButtonToggle()
+        {
+            hide_all_windows = !hide_all_windows;
+        }
+
+        public bool LoadTextureIfExists(out Texture texture,
+                                         string path)
+        {
+            string full_path =
+                KSPUtil.ApplicationRootPath + Path.DirectorySeparatorChar +
+                "GameData" + Path.DirectorySeparatorChar +
+                "KerbalTelemetry" + Path.DirectorySeparatorChar +
+                "Textures" + Path.DirectorySeparatorChar +
+                path;
+            if (File.Exists(full_path))
+            {
+                var texture2d = new Texture2D(12, 12);
+                bool success = ImageConversion.LoadImage(
+                    texture2d,
+                    File.ReadAllBytes(full_path));
+                if (!success)
+                {
+                    UnityEngine.Debug.Log("[Kerbal Telemetry] Failed to load texture " + full_path);
+                }
+                texture = texture2d;
+                return true;
+            }
+            else
+            {
+                texture = null;
+                return false;
+            }
+        }
+
+        public void LoadTextureOrDie(out Texture texture,
+                                      string path)
+        {
+            bool success = LoadTextureIfExists(out texture, path);
+            if (!success)
+            {
+                UnityEngine.Debug.Log("[Kerbal Telemetry] Missing texture " + path);
+            }
+        }
 
         public void OnGUI()
         {
             if (!_hasInitStyles) InitStyles();
-            if (launcherButton == null)
+            if (ApplicationLauncher.Ready && launcherButton == null && hasPart)
             {
-                //launcherButtonTexture = chatterer_icon_on;
-                launcherButton = ApplicationLauncher.Instance.AddModApplication(launcherButtonToggle, launcherButtonToggle,
+                LoadTextureOrDie(out Texture toolbar_button_texture,
+                       "logo.png");
+                launcherButton = ApplicationLauncher.Instance.AddModApplication(LauncherButtonToggle, LauncherButtonToggle,
                                                                             null, null,
                                                                             null, null,
                                                                             ApplicationLauncher.AppScenes.FLIGHT | ApplicationLauncher.AppScenes.MAPVIEW,
-                                                                            launcherButtonTexture);
+                                                                            toolbar_button_texture);
             }
-            //OnDraw();
             if (!hide_all_windows) OnDraw();
         }
 
@@ -57,35 +132,64 @@ namespace Kerbal_Telemetry
             _windowPosition = GUILayout.Window(10, _windowPosition, OnWindow, "Kerbal Telemetry", _windowStyle);
         }
 
-        private void OnWindow(int windowId)
+        public string serverButtonText = "Start Server";
+        public string serverStatusText = "Server Status: Stopped";
+
+        public void OnWindow(int windowId)
         {
             GUILayout.BeginHorizontal(GUILayout.Width(250f));
-            GUILayout.Label(toggleServerActive ? "Server Status: Running" : "Server Status: Stopped", _labelStyle);
-            if (GUILayout.Button(toggleServerActive ? "Stop Server" : "Start Server", _buttonStyle)) {
-                toggleServerActive = !toggleServerActive;
-                if (toggleServerActive)
-                {
-                    StartServer();
-                } else
-                {
-                    StopServer();
-                }
-            }
+            GUILayout.Label(serverStatusText, _labelStyle);
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(GUILayout.Width(250f));
+            GUILayout.Label("Port", _labelStyle);
+            port = Int16.Parse(GUILayout.TextField(port.ToString(), _inputStyle));
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(GUILayout.Width(250f));
+            GUILayout.Label("Server Toggle", _labelStyle);
+            if (GUILayout.Button(serverButtonText, _buttonStyle)) ServerToggler();
             GUILayout.EndHorizontal();
 
             GUI.DragWindow();
         }
 
+        public void ServerToggler()
+        {
+            toggleServerActive = !toggleServerActive;
+            if (toggleServerActive)
+            {
+                serverButtonText = "Stop Server";
+                serverStatusText = "Server Status: Running on port " + port;
+                StartServer();
+            }
+            else
+            {
+                serverButtonText = "Start Server";
+                serverStatusText = "Server Status: Stopped";
+                StopServer();
+            }
+        }
+
         private void InitStyles()
         {
-            _windowStyle = new GUIStyle(HighLogic.Skin.window);
-            _windowStyle.fixedWidth = 270f;
+            _windowStyle = new GUIStyle(HighLogic.Skin.window)
+            {
+                fixedWidth = 270f
+            };
 
-            _labelStyle = new GUIStyle(HighLogic.Skin.label);
-            _labelStyle.stretchWidth = true;
+            _labelStyle = new GUIStyle(HighLogic.Skin.label)
+            {
+                stretchWidth = true
+            };
 
-            _buttonStyle = new GUIStyle(HighLogic.Skin.button);
-            _buttonStyle.stretchWidth = true;
+            _buttonStyle = new GUIStyle(HighLogic.Skin.button)
+            {
+                stretchWidth = true
+            };
+
+            _inputStyle = new GUIStyle(HighLogic.Skin.textField)
+            {
+                stretchWidth = true
+            };
 
             _hasInitStyles = true;
         }
@@ -252,7 +356,7 @@ namespace Kerbal_Telemetry
         private void ProcessContext(HttpListenerContext context)
         {
             // get filename path
-            string path = Path.Combine("GameData", "Kerbal Telemetry", "WebServer");
+            string path = Path.Combine("GameData", "KerbalTelemetry", "WebServer");
             string[] listOfAccess = { "static/data.json", "static/orbit.json", "static/fPOverTimeData.json", "static/altOverTime.json", "static/apogeeOverTimeData.json", "static/dVOverTimeData.json", "static/velOverTimeData.json", "stage" };
             string filename = context.Request.Url.AbsolutePath;
             if (filename != null) filename = filename.Substring(1);
@@ -389,19 +493,6 @@ namespace Kerbal_Telemetry
             //}
 
             context.Response.OutputStream.Close();
-        }
-
-        private bool hide_all_windows = true;
-        private Texture2D launcherButtonTexture = GameDatabase.Instance.GetTexture("Kerbal Telemetry/Textures/logo", false);
-
-        //public void Start()
-        //{
-        //    StartServer();
-        //}
-
-        public void launcherButtonToggle()
-        {
-            hide_all_windows = !hide_all_windows;
         }
 
         public void Update()
