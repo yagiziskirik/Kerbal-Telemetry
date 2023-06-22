@@ -21,13 +21,13 @@ Telemetry addon for Kerbal Space Program. The program uses a server that is runn
 
 ## Translations
 If you see any problems or if you want to translate the program to your language, please contact me from my [Github](https://github.com/yagiziskirik) page.
-* Russian - [MekoNix](https://github.com/MekoNix)
+* Russian - [MekoNix](https://github.com/MekoNix) and [Urmipie](https://github.com/Urmipie)
 * Japanese - [MekoNix Team](https://github.com/MekoNix)
 * Ukrainian - [MekoNix Team](https://github.com/MekoNix)
 * Turkish - [yagiziskirik](https://github.com/yagiziskirik)
 * English - [yagiziskirik](https://github.com/yagiziskirik)
 * Chinese - Auto-translated
-* French - Auto-translated
+* French - Auto-translated and [CartierPierre](https://github.com/CartierPierre)
 * Spanish - Auto-translated
 
 ## Dependencies
